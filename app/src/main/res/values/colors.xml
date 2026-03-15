@@ -7,4 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="smartmove_blue">#1E6EEB</color>
+    <color name="smartmove_blue_dark">#0F4FC4</color>
+    <color name="smartmove_bg_top">#F4F8FF</color>
+    <color name="smartmove_bg_bottom">#DCEBFF</color>
+    <color name="smartmove_text_primary">#2F3A56</color>
+    <color name="smartmove_text_secondary">#6E7A96</color>
+    <color name="smartmove_divider">#D9E2F2</color>
 </resources>
