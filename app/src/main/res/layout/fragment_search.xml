@@ -161,6 +161,7 @@
                 android:padding="16dp">
 
                 <TextView
+                    android:id="@+id/tvResultTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Kitchen Essentials"
@@ -169,6 +170,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tvResultRoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"

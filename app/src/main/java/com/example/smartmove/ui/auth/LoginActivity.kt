@@ -13,6 +13,9 @@ import com.example.smartmove.data.SessionManager
 import com.example.smartmove.model.LoginRequest
 import com.example.smartmove.model.TokenResponse
 import com.example.smartmove.network.RetrofitClient
+import com.example.smartmove.model.ActiveProjectResponse
+import com.example.smartmove.model.ProjectCreateRequest
+import com.example.smartmove.model.ProjectResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,7 +33,7 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
+        RetrofitClient.init(this)
         sessionManager = SessionManager(this)
 
         etEmail = findViewById(R.id.etEmail)
@@ -82,11 +85,8 @@ class LoginActivity : AppCompatActivity() {
                     val token = rawBody.access_token
                     sessionManager.saveToken(token)
 
-                    Toast.makeText(this@LoginActivity, "Login successful", Toast.LENGTH_SHORT).show()
+                    createDefaultProjectIfNeeded()
 
-                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
-                    startActivity(intent)
-                    finishAffinity()
                 } else {
                     Toast.makeText(
                         this@LoginActivity,
@@ -95,7 +95,92 @@ class LoginActivity : AppCompatActivity() {
                     ).show()
                 }
             }
+            private fun createDefaultProjectIfNeeded() {
+                RetrofitClient.api.getActiveProject().enqueue(object : Callback<ActiveProjectResponse> {
+                    override fun onResponse(
+                        call: Call<ActiveProjectResponse>,
+                        response: Response<ActiveProjectResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            val activeProject = response.body()?.project
 
+                            if (activeProject != null) {
+                                Toast.makeText(
+                                    this@LoginActivity,
+                                    "Login successful",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+
+                                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                                finishAffinity()
+                            } else {
+                                createProjectNow()
+                            }
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Could not check active project",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                            finishAffinity()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<ActiveProjectResponse>, t: Throwable) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Project check failed: ${t.message}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finishAffinity()
+                    }
+                })
+            }
+
+            private fun createProjectNow() {
+                val request = ProjectCreateRequest(
+                    name = "My First Move"
+                )
+
+                RetrofitClient.api.createProject(request).enqueue(object : Callback<ProjectResponse> {
+                    override fun onResponse(
+                        call: Call<ProjectResponse>,
+                        response: Response<ProjectResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Project created successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        } else {
+                            Toast.makeText(
+                                this@LoginActivity,
+                                "Failed to create project: ${response.code()}",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
+
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finishAffinity()
+                    }
+
+                    override fun onFailure(call: Call<ProjectResponse>, t: Throwable) {
+                        Toast.makeText(
+                            this@LoginActivity,
+                            "Error creating project: ${t.message}",
+                            Toast.LENGTH_LONG
+                        ).show()
+
+                        startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                        finishAffinity()
+                    }
+                })
+            }
             override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
                 Toast.makeText(
                     this@LoginActivity,

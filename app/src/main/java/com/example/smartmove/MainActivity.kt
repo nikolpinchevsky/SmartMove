@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import com.example.smartmove.ui.home.HomeFragment
 import com.example.smartmove.ui.search.SearchFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.smartmove.network.RetrofitClient
+import com.example.smartmove.ui.add.AddFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -14,7 +16,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        RetrofitClient.init(this)
         bottomNavigation = findViewById(R.id.bottomNavigation)
 
         if (savedInstanceState == null) {

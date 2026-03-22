@@ -1,5 +1,5 @@
 package com.example.smartmove.model
-
+//מי המשתמש
 data class RegisterRequest(
     val name: String,
     val email: String,
