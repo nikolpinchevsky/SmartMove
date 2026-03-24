@@ -35,7 +35,11 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         RetrofitClient.init(this)
         sessionManager = SessionManager(this)
-
+        if (sessionManager.isLoggedIn()) {
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+            return
+        }
         etEmail = findViewById(R.id.etEmail)
         etPassword = findViewById(R.id.etPassword)
         btnLogin = findViewById(R.id.btnLogin)
