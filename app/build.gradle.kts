@@ -67,7 +67,8 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
 
-
+    implementation(libs.zxing.android.embedded)
+    implementation(libs.core)
 
 
 }
