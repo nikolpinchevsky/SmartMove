@@ -45,6 +45,7 @@
                 android:padding="18dp">
 
                 <TextView
+                    android:id="@+id/tvProjectName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Current Project"
@@ -128,6 +129,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvOpenedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="4"
@@ -169,6 +171,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvUnpackedCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="2"
@@ -202,6 +205,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tvUrgentCount"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="3"
@@ -227,73 +231,23 @@
             android:textColor="@color/smartmove_text_primary"
             android:textSize="20sp"
             android:textStyle="bold" />
+        <TextView
+            android:id="@+id/tvPriorityEmpty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="No urgent boxes"
+            android:textColor="@color/smartmove_text_secondary"
+            android:textSize="15sp"
+            android:visibility="gone" />
 
-        <androidx.cardview.widget.CardView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerPriorityBoxes"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:elevation="3dp"
-            app:cardCornerRadius="18dp"
-            app:cardBackgroundColor="@android:color/white">
+            android:nestedScrollingEnabled="false" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Kitchen Essentials"
-                    android:textColor="@color/smartmove_text_primary"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Priority: Red • Status: Closed"
-                    android:textColor="@color/smartmove_text_secondary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="24dp"
-            android:elevation="3dp"
-            app:cardCornerRadius="18dp"
-            app:cardBackgroundColor="@android:color/white">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Electronics"
-                    android:textColor="@color/smartmove_text_primary"
-                    android:textSize="17sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="Priority: Red • Status: Closed"
-                    android:textColor="@color/smartmove_text_secondary"
-                    android:textSize="14sp" />
-            </LinearLayout>
-        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 </ScrollView>

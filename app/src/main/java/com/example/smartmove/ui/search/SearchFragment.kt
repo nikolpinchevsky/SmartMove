@@ -10,6 +10,8 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.smartmove.R
 import com.example.smartmove.model.BoxesResponse
 import com.example.smartmove.network.RetrofitClient
@@ -20,8 +22,9 @@ import retrofit2.Response
 class SearchFragment : Fragment() {
 
     private lateinit var etSearch: EditText
-    private lateinit var tvResultTitle: TextView
-    private lateinit var tvResultRoom: TextView
+    private lateinit var recyclerSearchResults: RecyclerView
+    private lateinit var tvEmptyState: TextView
+    private lateinit var boxAdapter: BoxAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,12 +34,30 @@ class SearchFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_search, container, false)
 
         etSearch = view.findViewById(R.id.etSearch)
-        tvResultTitle = view.findViewById(R.id.tvResultTitle)
-        tvResultRoom = view.findViewById(R.id.tvResultRoom)
+        recyclerSearchResults = view.findViewById(R.id.recyclerSearchResults)
+        tvEmptyState = view.findViewById(R.id.tvEmptyState)
 
+        setupRecyclerView()
         setupSearch()
 
         return view
+    }
+
+    private fun setupRecyclerView() {
+        boxAdapter = BoxAdapter(emptyList()) { selectedBox ->
+            val fragment = com.example.smartmove.ui.boxdetails.BoxDetailsFragment()
+            fragment.arguments = Bundle().apply {
+                putString("box_id", selectedBox.id)
+            }
+
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, fragment)
+                .addToBackStack(null)
+                .commit()
+        }
+
+        recyclerSearchResults.layoutManager = LinearLayoutManager(requireContext())
+        recyclerSearchResults.adapter = boxAdapter
     }
 
     private fun setupSearch() {
@@ -63,6 +84,8 @@ class SearchFragment : Fragment() {
             return
         }
 
+        tvEmptyState.visibility = View.GONE
+
         RetrofitClient.api.getBoxes(query = query).enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(
                 call: Call<BoxesResponse>,
@@ -74,12 +97,13 @@ class SearchFragment : Fragment() {
                     Log.d("SEARCH", "Results count: ${boxes.size}")
 
                     if (boxes.isNotEmpty()) {
-                        val firstBox = boxes.first()
-                        tvResultTitle.text = firstBox.name
-                        tvResultRoom.text = "Room: ${firstBox.destination_room ?: "Unknown"}"
+                        boxAdapter.updateData(boxes)
+                        recyclerSearchResults.visibility = View.VISIBLE
+                        tvEmptyState.visibility = View.GONE
                     } else {
-                        tvResultTitle.text = "No results"
-                        tvResultRoom.text = ""
+                        boxAdapter.updateData(emptyList())
+                        recyclerSearchResults.visibility = View.GONE
+                        tvEmptyState.visibility = View.VISIBLE
                     }
                 } else {
                     Log.e("SEARCH", "Search error: ${response.code()}")
