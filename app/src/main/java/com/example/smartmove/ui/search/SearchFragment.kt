@@ -39,6 +39,7 @@ class SearchFragment : Fragment() {
 
         setupRecyclerView()
         setupSearch()
+        loadAllBoxes()
 
         return view
     }
@@ -76,11 +77,38 @@ class SearchFragment : Fragment() {
         }
     }
 
+    private fun loadAllBoxes() {
+        RetrofitClient.api.getBoxes().enqueue(object : Callback<BoxesResponse> {
+            override fun onResponse(
+                call: Call<BoxesResponse>,
+                response: Response<BoxesResponse>
+            ) {
+                if (response.isSuccessful) {
+                    val boxes = response.body()?.boxes ?: emptyList()
+                    updateResults(boxes)
+                } else {
+                    Log.e("SEARCH", "Load all boxes error: ${response.code()}")
+                    tvEmptyState.visibility = View.VISIBLE
+                    recyclerSearchResults.visibility = View.GONE
+                }
+            }
+
+            override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                Log.e("SEARCH", "Load all boxes failure", t)
+                Toast.makeText(
+                    requireContext(),
+                    "Network error: ${t.message}",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        })
+    }
+
     private fun performSearch() {
         val query = etSearch.text.toString().trim()
 
         if (query.isEmpty()) {
-            Toast.makeText(requireContext(), "Type something to search", Toast.LENGTH_SHORT).show()
+            loadAllBoxes()
             return
         }
 
@@ -94,17 +122,13 @@ class SearchFragment : Fragment() {
                 if (response.isSuccessful) {
                     val boxes = response.body()?.boxes ?: emptyList()
 
+                    Log.d("SEARCH", "Query: $query")
                     Log.d("SEARCH", "Results count: ${boxes.size}")
-
-                    if (boxes.isNotEmpty()) {
-                        boxAdapter.updateData(boxes)
-                        recyclerSearchResults.visibility = View.VISIBLE
-                        tvEmptyState.visibility = View.GONE
-                    } else {
-                        boxAdapter.updateData(emptyList())
-                        recyclerSearchResults.visibility = View.GONE
-                        tvEmptyState.visibility = View.VISIBLE
+                    boxes.forEach {
+                        Log.d("SEARCH", "Box: ${it.name} | Items: ${it.items}")
                     }
+
+                    updateResults(boxes)
                 } else {
                     Log.e("SEARCH", "Search error: ${response.code()}")
                     Toast.makeText(
@@ -124,5 +148,17 @@ class SearchFragment : Fragment() {
                 ).show()
             }
         })
+    }
+
+    private fun updateResults(boxes: List<com.example.smartmove.model.BoxResponse>) {
+        if (boxes.isNotEmpty()) {
+            boxAdapter.updateData(boxes)
+            recyclerSearchResults.visibility = View.VISIBLE
+            tvEmptyState.visibility = View.GONE
+        } else {
+            boxAdapter.updateData(emptyList())
+            recyclerSearchResults.visibility = View.GONE
+            tvEmptyState.visibility = View.VISIBLE
+        }
     }
 }

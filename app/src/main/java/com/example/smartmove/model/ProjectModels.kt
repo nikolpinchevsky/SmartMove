@@ -1,5 +1,5 @@
 package com.example.smartmove.model
-//מה המשתמש עושה באפליקציה
+
 data class ProjectCreateRequest(
     val name: String
 )

@@ -31,6 +31,8 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
 
+        RetrofitClient.init(this)
+
         sessionManager = SessionManager(this)
 
         etFullName = findViewById(R.id.etFullName)

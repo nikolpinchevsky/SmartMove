@@ -16,6 +16,7 @@ class BoxAdapter(
     class BoxViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvBoxName: TextView = itemView.findViewById(R.id.tvBoxName)
         val tvBoxRoom: TextView = itemView.findViewById(R.id.tvBoxRoom)
+        val tvBoxItems: TextView = itemView.findViewById(R.id.tvBoxItems)
         val tvBoxStatus: TextView = itemView.findViewById(R.id.tvBoxStatus)
         val tvBoxPriority: TextView = itemView.findViewById(R.id.tvBoxPriority)
     }
@@ -31,6 +32,16 @@ class BoxAdapter(
 
         holder.tvBoxName.text = box.name
         holder.tvBoxRoom.text = "Room: ${box.destination_room}"
+
+        val itemsText = if (box.items.isEmpty()) {
+            "No items added"
+        } else {
+            box.items.take(3).joinToString(", ") +
+                    if (box.items.size > 3) "..." else ""
+        }
+
+        holder.tvBoxItems.text = itemsText
+
         holder.tvBoxPriority.text = box.priority_color.replaceFirstChar { it.uppercase() }
         holder.tvBoxStatus.text = box.status.replaceFirstChar { it.uppercase() }
 

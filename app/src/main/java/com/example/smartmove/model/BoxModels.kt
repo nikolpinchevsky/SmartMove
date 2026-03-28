@@ -43,3 +43,31 @@ data class BoxUpdateRequest(
     val items: List<String>? = null,
     val status: String? = null
 )
+
+data class AiFormSuggestions(
+    val name: String? = null,
+    val items: List<String>? = null,
+    val destination_room: String? = null,
+    val priority_color: String? = null,
+    val fragile: Boolean? = null,
+    val valuable: Boolean? = null
+)
+
+data class AiMetadata(
+    val detected_categories: List<String>? = null,
+    val suggested_fragile: Boolean? = null,
+    val suggested_valuable: Boolean? = null,
+    val suggested_priority_color: String? = null,
+    val suggested_destination_room: String? = null,
+    val suggested_box_name: String? = null,
+    val reason: String? = null,
+    val approved: Boolean? = null,
+    val saved_at: String? = null
+)
+
+data class AiAnalyzeResponse(
+    val ok: Boolean,
+    val message: String? = null,
+    val form_suggestions: AiFormSuggestions? = null,
+    val ai_metadata: AiMetadata? = null
+)
