@@ -150,18 +150,15 @@
                     android:textSize="15sp"
                     android:textStyle="bold" />
 
-                <EditText
-                    android:id="@+id/etRoom"
+                <Spinner
+                    android:id="@+id/spinnerRooms"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="8dp"
                     android:background="@drawable/bg_input"
-                    android:hint="e.g. Kitchen"
-                    android:inputType="text"
                     android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:textColor="@color/smartmove_text_primary"
-                    android:textColorHint="@color/smartmove_text_secondary" />
+                    android:paddingEnd="16dp" />
+
 
                 <TextView
                     android:layout_width="wrap_content"

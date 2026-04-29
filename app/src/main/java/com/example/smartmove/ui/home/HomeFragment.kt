@@ -1,5 +1,6 @@
 package com.example.smartmove.ui.home
 
+
 import android.app.AlertDialog
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -31,6 +32,8 @@ import com.example.smartmove.ui.boxlist.BoxesListFragment
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.widget.ProgressBar
+import androidx.core.content.ContextCompat
 
 class HomeFragment : Fragment() {
 
@@ -41,6 +44,9 @@ class HomeFragment : Fragment() {
     private var tvUnpackedCount: TextView? = null
     private var tvUrgentCount: TextView? = null
     private var tvProjectName: TextView? = null
+
+    private var tvProgressPercent: TextView? = null
+    private var progressMoving: ProgressBar? = null
     private var tvPriorityEmpty: TextView? = null
     private var recyclerPriorityBoxes: RecyclerView? = null
 
@@ -74,6 +80,8 @@ class HomeFragment : Fragment() {
         tvUnpackedCount = rootView?.findViewById(R.id.tvUnpackedCount)
         tvUrgentCount = rootView?.findViewById(R.id.tvUrgentCount)
         tvProjectName = rootView?.findViewById(R.id.tvProjectName)
+        tvProgressPercent = rootView?.findViewById(R.id.tvProgressPercent)
+        progressMoving = rootView?.findViewById(R.id.progressMoving)
         tvPriorityEmpty = rootView?.findViewById(R.id.tvPriorityEmpty)
         recyclerPriorityBoxes = rootView?.findViewById(R.id.recyclerPriorityBoxes)
 
@@ -95,6 +103,7 @@ class HomeFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
+
         val filter = IntentFilter("ACTIVE_PROJECT_CHANGED")
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -104,14 +113,23 @@ class HomeFragment : Fragment() {
                 Context.RECEIVER_NOT_EXPORTED
             )
         } else {
-            requireActivity().registerReceiver(projectChangedReceiver, filter)
+            @Suppress("DEPRECATION")
+            ContextCompat.registerReceiver(
+                requireActivity(),
+                projectChangedReceiver,
+                filter,
+                null,
+                null,
+                ContextCompat.RECEIVER_NOT_EXPORTED
+            )
         }
     }
 
     override fun onStop() {
         super.onStop()
+
         try {
-            requireActivity().unregisterReceiver(projectChangedReceiver)
+            requireContext().unregisterReceiver(projectChangedReceiver)
         } catch (_: Exception) {
         }
     }
@@ -187,7 +205,9 @@ class HomeFragment : Fragment() {
                     Toast.makeText(requireContext(), "Project created", Toast.LENGTH_SHORT).show()
 
                     refreshHomeData()
-                    activity?.sendBroadcast(Intent("ACTIVE_PROJECT_CHANGED"))
+                    requireContext().sendBroadcast(
+                        Intent("ACTIVE_PROJECT_CHANGED").setPackage(requireContext().packageName)
+                    )
                 } else {
                     Toast.makeText(
                         requireContext(),
@@ -219,7 +239,7 @@ class HomeFragment : Fragment() {
         }
 
         cardUnpacked?.setOnClickListener {
-            openBoxesList("unpacked")
+            openBoxesList("to_open")
         }
 
         cardUrgent?.setOnClickListener {
@@ -344,14 +364,31 @@ class HomeFragment : Fragment() {
                     val boxes = response.body()?.boxes ?: emptyList()
 
                     val total = boxes.size
-                    val opened = boxes.count { it.status.lowercase() == "opened" }
-                    val unpacked = boxes.count { it.status.lowercase() == "unpacked" }
-                    val urgent = boxes.count { it.priority_color.lowercase() == "red" }
+                    val opened = boxes.count {
+                        it.status.lowercase() == "opened" || it.status.lowercase() == "unpacked"
+                    }
+                    val toOpen = boxes.count {
+                        it.status.lowercase() != "opened" && it.status.lowercase() != "unpacked"
+                    }
+                    val urgent = boxes.count {
+                        it.priority_color.lowercase() == "red" &&
+                                it.status.lowercase() != "opened" &&
+                                it.status.lowercase() != "unpacked"
+                    }
+
+                    val progress = if (total > 0) {
+                        (opened * 100) / total
+                    } else {
+                        0
+                    }
 
                     tvBoxesCount?.text = total.toString()
                     tvOpenedCount?.text = opened.toString()
-                    tvUnpackedCount?.text = unpacked.toString()
+                    tvUnpackedCount?.text = toOpen.toString()
                     tvUrgentCount?.text = urgent.toString()
+
+                    tvProgressPercent?.text = "$progress%"
+                    progressMoving?.progress = progress
 
                 } else {
                     Log.e("HOME", "Error: ${response.code()}")
@@ -373,5 +410,7 @@ class HomeFragment : Fragment() {
         tvOpenedCount?.text = "-"
         tvUnpackedCount?.text = "-"
         tvUrgentCount?.text = "-"
+        tvProgressPercent?.text = "0%"
+        progressMoving?.progress = 0
     }
 }

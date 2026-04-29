@@ -15,6 +15,9 @@ import com.example.smartmove.model.ProjectUpdateRequest
 import com.example.smartmove.model.RegisterRequest
 import com.example.smartmove.model.TokenResponse
 import com.example.smartmove.model.UserResponse
+import com.example.smartmove.model.CreateRoomRequest
+import com.example.smartmove.model.RoomResponse
+import com.example.smartmove.model.RoomsResponse
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.Body
@@ -92,4 +95,10 @@ interface ApiService {
     fun analyzeBoxImageForForm(
         @Part file: MultipartBody.Part
     ): Call<AiAnalyzeResponse>
+
+    @GET("rooms")
+    fun getRooms(): Call<RoomsResponse>
+
+    @POST("rooms")
+    fun createRoom(@Body request: CreateRoomRequest): Call<RoomResponse>
 }

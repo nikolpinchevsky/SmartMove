@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.smartmove.R
+import com.example.smartmove.model.BoxResponse
 import com.example.smartmove.model.BoxesResponse
 import com.example.smartmove.network.RetrofitClient
 import com.example.smartmove.ui.boxdetails.BoxDetailsFragment
@@ -76,17 +77,25 @@ class BoxesListFragment : Fragment() {
                 tvListTitle.text = "All Boxes"
                 tvListSubtitle.text = "All boxes in the active project"
             }
+
             "opened" -> {
                 tvListTitle.text = "Opened Boxes"
                 tvListSubtitle.text = "Boxes that were already opened"
             }
+
             "unpacked" -> {
                 tvListTitle.text = "Unpacked Boxes"
                 tvListSubtitle.text = "Boxes that were already unpacked"
             }
+
             "urgent" -> {
                 tvListTitle.text = "Urgent Boxes"
                 tvListSubtitle.text = "Priority boxes that should be handled first"
+            }
+
+            "to_open" -> {
+                tvListTitle.text = "Boxes To Open"
+                tvListSubtitle.text = "Boxes that are still closed"
             }
         }
     }
@@ -97,6 +106,8 @@ class BoxesListFragment : Fragment() {
             "opened" -> loadBoxesByStatus("opened")
             "unpacked" -> loadBoxesByStatus("unpacked")
             "urgent" -> loadUrgentBoxes()
+            "to_open" -> loadBoxesToOpen()
+            else -> loadAllBoxes()
         }
     }
 
@@ -134,6 +145,29 @@ class BoxesListFragment : Fragment() {
         })
     }
 
+    private fun loadBoxesToOpen() {
+        RetrofitClient.api.getBoxes().enqueue(object : Callback<BoxesResponse> {
+            override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
+                if (response.isSuccessful) {
+                    val boxes = response.body()?.boxes ?: emptyList()
+
+                    val toOpenBoxes = boxes.filter {
+                        it.status.lowercase() != "opened" &&
+                                it.status.lowercase() != "unpacked"
+                    }
+
+                    updateList(toOpenBoxes)
+                } else {
+                    showError("Failed to load boxes: ${response.code()}")
+                }
+            }
+
+            override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                showError("Network error: ${t.message}")
+            }
+        })
+    }
+
     private fun loadUrgentBoxes() {
         RetrofitClient.api.getPriorityBoxes().enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
@@ -151,7 +185,7 @@ class BoxesListFragment : Fragment() {
         })
     }
 
-    private fun updateList(boxes: List<com.example.smartmove.model.BoxResponse>) {
+    private fun updateList(boxes: List<BoxResponse>) {
         if (boxes.isEmpty()) {
             recyclerBoxesList.visibility = View.GONE
             tvEmptyList.visibility = View.VISIBLE

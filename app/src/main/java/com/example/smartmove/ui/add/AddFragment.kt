@@ -40,12 +40,23 @@ import retrofit2.Response
 import java.io.File
 import java.io.FileOutputStream
 import java.io.OutputStream
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.Spinner
+import com.example.smartmove.model.CreateRoomRequest
+import com.example.smartmove.model.Room
+import com.example.smartmove.model.RoomResponse
+import com.example.smartmove.model.RoomsResponse
 
 class AddFragment : Fragment() {
 
     private lateinit var etBoxName: EditText
-    private lateinit var etRoom: EditText
     private lateinit var etItems: EditText
+    private lateinit var spinnerRooms: Spinner
+    private var roomsList: MutableList<Room> = mutableListOf()
+    private var selectedRoom: String = ""
+    private var activeProjectId: String? = null
+
     private lateinit var tvPriorityGreen: TextView
     private lateinit var tvPriorityYellow: TextView
     private lateinit var tvPriorityRed: TextView
@@ -119,17 +130,20 @@ class AddFragment : Fragment() {
         setupSaveButton()
         setupAiButton()
         updatePrioritySelection()
+        loadActiveProjectAndRooms()
 
         return view
     }
 
     private fun initViews(view: View) {
         etBoxName = view.findViewById(R.id.etBoxName)
-        etRoom = view.findViewById(R.id.etRoom)
         etItems = view.findViewById(R.id.etItems)
+        spinnerRooms = view.findViewById(R.id.spinnerRooms)
+
         tvPriorityGreen = view.findViewById(R.id.tvPriorityGreen)
         tvPriorityYellow = view.findViewById(R.id.tvPriorityYellow)
         tvPriorityRed = view.findViewById(R.id.tvPriorityRed)
+
         switchFragile = view.findViewById(R.id.switchFragile)
         switchValuable = view.findViewById(R.id.switchValuable)
         btnSaveBox = view.findViewById(R.id.btnSaveBox)
@@ -205,8 +219,7 @@ class AddFragment : Fragment() {
         val s = ai.form_suggestions ?: return
 
         s.name?.let { etBoxName.setText(it) }
-        s.destination_room?.let { etRoom.setText(it) }
-        etItems.setText(s.items?.joinToString(", ") ?: "")
+        s.destination_room?.let { selectRoomIfExists(it) }
 
         switchFragile.isChecked = s.fragile ?: false
         switchValuable.isChecked = s.valuable ?: false
@@ -259,9 +272,142 @@ class AddFragment : Fragment() {
         }
     }
 
+    private fun loadActiveProjectAndRooms() {
+        RetrofitClient.api.getActiveProject().enqueue(object : Callback<ActiveProjectResponse> {
+            override fun onResponse(
+                call: Call<ActiveProjectResponse>,
+                response: Response<ActiveProjectResponse>
+            ) {
+                val project = response.body()?.project ?: run {
+                    Toast.makeText(requireContext(), "No active project found", Toast.LENGTH_SHORT).show()
+                    return
+                }
+
+                activeProjectId = project.id
+                loadRooms()
+            }
+
+            override fun onFailure(call: Call<ActiveProjectResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Error loading project", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun loadRooms() {
+        RetrofitClient.api.getRooms().enqueue(object : Callback<RoomsResponse> {
+            override fun onResponse(
+                call: Call<RoomsResponse>,
+                response: Response<RoomsResponse>
+            ) {
+                roomsList = response.body()?.rooms?.toMutableList() ?: mutableListOf()
+
+                val roomNames = roomsList.map { it.name }.toMutableList()
+                roomNames.add("+ Add new room")
+
+                val adapter = ArrayAdapter(
+                    requireContext(),
+                    android.R.layout.simple_spinner_item,
+                    roomNames
+                )
+
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+                spinnerRooms.adapter = adapter
+
+                spinnerRooms.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                    override fun onItemSelected(
+                        parent: AdapterView<*>,
+                        view: View?,
+                        position: Int,
+                        id: Long
+                    ) {
+                        val selected = roomNames[position]
+
+                        if (selected == "+ Add new room") {
+                            showAddRoomDialog()
+                        } else {
+                            selectedRoom = selected
+                        }
+                    }
+
+                    override fun onNothingSelected(parent: AdapterView<*>) {}
+                }
+
+                if (roomsList.isNotEmpty()) {
+                    selectedRoom = roomsList.first().name
+                }
+            }
+
+            override fun onFailure(call: Call<RoomsResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Failed to load rooms", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun showAddRoomDialog() {
+        val input = EditText(requireContext())
+        input.hint = "e.g. Balcony"
+
+        AlertDialog.Builder(requireContext())
+            .setTitle("Add new room")
+            .setView(input)
+            .setPositiveButton("Save") { _, _ ->
+                val roomName = input.text.toString().trim()
+
+                if (roomName.isNotEmpty()) {
+                    createRoom(roomName)
+                } else {
+                    Toast.makeText(requireContext(), "Room name is empty", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel") { _, _ ->
+                if (roomsList.isNotEmpty()) spinnerRooms.setSelection(0)
+            }
+            .show()
+    }
+
+    private fun createRoom(roomName: String) {
+        val projectId = activeProjectId ?: run {
+            Toast.makeText(requireContext(), "No active project", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val request = CreateRoomRequest(
+            project_id = projectId,
+            name = roomName
+        )
+
+        RetrofitClient.api.createRoom(request).enqueue(object : Callback<RoomResponse> {
+            override fun onResponse(call: Call<RoomResponse>, response: Response<RoomResponse>) {
+                if (response.isSuccessful) {
+                    selectedRoom = roomName
+                    loadRooms()
+                    Toast.makeText(requireContext(), "Room added", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(requireContext(), "Room already exists or error", Toast.LENGTH_SHORT).show()
+                }
+            }
+
+            override fun onFailure(call: Call<RoomResponse>, t: Throwable) {
+                Toast.makeText(requireContext(), "Failed to create room", Toast.LENGTH_SHORT).show()
+            }
+        })
+    }
+
+    private fun selectRoomIfExists(roomName: String) {
+        selectedRoom = roomName
+
+        val index = roomsList.indexOfFirst {
+            it.name.equals(roomName, ignoreCase = true)
+        }
+
+        if (index >= 0) {
+            spinnerRooms.setSelection(index)
+        }
+    }
+
     private fun saveBox() {
         val boxName = etBoxName.text.toString().trim()
-        val room = etRoom.text.toString().trim()
+        val room = selectedRoom.trim()
         val itemsText = etItems.text.toString().trim()
         val fragile = switchFragile.isChecked
         val valuable = switchValuable.isChecked
@@ -272,7 +418,7 @@ class AddFragment : Fragment() {
         }
 
         if (room.isEmpty()) {
-            etRoom.error = "Please enter a destination room"
+            Toast.makeText(requireContext(), "Please select a destination room", Toast.LENGTH_SHORT).show()
             return
         }
 
@@ -477,7 +623,10 @@ class AddFragment : Fragment() {
 
     private fun clearForm() {
         etBoxName.text.clear()
-        etRoom.text.clear()
+        if (roomsList.isNotEmpty()) {
+            spinnerRooms.setSelection(0)
+            selectedRoom = roomsList.first().name
+        }
         etItems.text.clear()
         switchFragile.isChecked = false
         switchValuable.isChecked = false
