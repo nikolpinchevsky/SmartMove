@@ -105,11 +105,11 @@ class ScanFragment : Fragment() {
     private fun loadBoxByQr(qrIdentifier: String) {
         RetrofitClient.api.getBoxByQr(qrIdentifier).enqueue(object : Callback<BoxResponse> {
             override fun onResponse(call: Call<BoxResponse>, response: Response<BoxResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful && response.body() != null) {
                     val box = response.body()!!
                     lastScannedBoxId = box.id
                     updateScannedBoxUi(box)
-
                     Toast.makeText(
                         requireContext(),
                         "Box scanned successfully",
@@ -126,6 +126,7 @@ class ScanFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxResponse>, t: Throwable) {
+                if (!isAdded) return
                 Log.e("SCAN", "QR lookup failed", t)
                 Toast.makeText(
                     requireContext(),

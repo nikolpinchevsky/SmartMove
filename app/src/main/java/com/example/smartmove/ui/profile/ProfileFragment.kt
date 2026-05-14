@@ -166,7 +166,7 @@ class ProfileFragment : Fragment() {
                 false
             )
 
-            val tvName = view.findViewById<TextView>(R.id.tvProjectName)
+            val tvName = view.findViewById<androidx.appcompat.widget.AppCompatTextView>(R.id.tvProjectName)
             tvName.text = project.name
 
             view.setOnClickListener {
@@ -208,7 +208,9 @@ class ProfileFragment : Fragment() {
     }
 
     private fun notifyProjectChanged() {
-        activity?.sendBroadcast(Intent("ACTIVE_PROJECT_CHANGED"))
+        activity?.sendBroadcast(
+            Intent("ACTIVE_PROJECT_CHANGED").setPackage(requireContext().packageName)
+        )
     }
 
     private fun setupLogout() {
@@ -230,7 +232,7 @@ class ProfileFragment : Fragment() {
 
     private fun showAvatarChooser() {
         val dialogView = layoutInflater.inflate(R.layout.dialog_avatar_picker, null)
-        val ivAvatarOption = dialogView.findViewById<ImageView>(R.id.ivAvatarOption)
+        val ivAvatarOption = dialogView.findViewById<androidx.appcompat.widget.AppCompatImageView>(R.id.ivAvatarOption)
 
         val currentAvatar = prefs.getInt("selected_avatar", avatar2)
         val avatarToShow = if (currentAvatar == avatar1) avatar2 else avatar1

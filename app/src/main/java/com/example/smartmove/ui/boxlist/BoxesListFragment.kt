@@ -114,6 +114,7 @@ class BoxesListFragment : Fragment() {
     private fun loadAllBoxes() {
         RetrofitClient.api.getBoxes().enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     val boxes = response.body()?.boxes ?: emptyList()
                     updateList(boxes)
@@ -123,6 +124,7 @@ class BoxesListFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                if (!isAdded) return
                 showError("Network error: ${t.message}")
             }
         })
@@ -131,6 +133,7 @@ class BoxesListFragment : Fragment() {
     private fun loadBoxesByStatus(status: String) {
         RetrofitClient.api.getBoxes(status = status).enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     val boxes = response.body()?.boxes ?: emptyList()
                     updateList(boxes)
@@ -140,6 +143,7 @@ class BoxesListFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                if (!isAdded) return
                 showError("Network error: ${t.message}")
             }
         })
@@ -148,14 +152,13 @@ class BoxesListFragment : Fragment() {
     private fun loadBoxesToOpen() {
         RetrofitClient.api.getBoxes().enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     val boxes = response.body()?.boxes ?: emptyList()
-
                     val toOpenBoxes = boxes.filter {
                         it.status.lowercase() != "opened" &&
                                 it.status.lowercase() != "unpacked"
                     }
-
                     updateList(toOpenBoxes)
                 } else {
                     showError("Failed to load boxes: ${response.code()}")
@@ -163,6 +166,7 @@ class BoxesListFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                if (!isAdded) return
                 showError("Network error: ${t.message}")
             }
         })
@@ -171,6 +175,7 @@ class BoxesListFragment : Fragment() {
     private fun loadUrgentBoxes() {
         RetrofitClient.api.getPriorityBoxes().enqueue(object : Callback<BoxesResponse> {
             override fun onResponse(call: Call<BoxesResponse>, response: Response<BoxesResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     val boxes = response.body()?.boxes ?: emptyList()
                     updateList(boxes)
@@ -180,6 +185,7 @@ class BoxesListFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxesResponse>, t: Throwable) {
+                if (!isAdded) return
                 showError("Network error: ${t.message}")
             }
         })

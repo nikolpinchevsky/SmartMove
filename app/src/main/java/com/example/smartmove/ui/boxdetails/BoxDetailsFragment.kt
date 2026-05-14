@@ -27,7 +27,6 @@ class BoxDetailsFragment : Fragment() {
     private lateinit var tvFragile: TextView
     private lateinit var tvValuable: TextView
     private lateinit var tvItems: TextView
-    private lateinit var tvQr: TextView
 
     private lateinit var btnMarkOpened: Button
 
@@ -50,7 +49,6 @@ class BoxDetailsFragment : Fragment() {
         tvFragile = view.findViewById(R.id.tvDetailsFragile)
         tvValuable = view.findViewById(R.id.tvDetailsValuable)
         tvItems = view.findViewById(R.id.tvDetailsItems)
-        tvQr = view.findViewById(R.id.tvDetailsQr)
         btnMarkOpened = view.findViewById(R.id.btnMarkOpened)
         btnEditBox = view.findViewById(R.id.btnEditBox)
         val boxId = arguments?.getString("box_id")
@@ -87,6 +85,7 @@ class BoxDetailsFragment : Fragment() {
     private fun loadBoxDetails(boxId: String) {
         RetrofitClient.api.getBoxById(boxId).enqueue(object : Callback<BoxResponse> {
             override fun onResponse(call: Call<BoxResponse>, response: Response<BoxResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful && response.body() != null) {
                     bindBox(response.body()!!)
                 } else {
@@ -100,6 +99,7 @@ class BoxDetailsFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxResponse>, t: Throwable) {
+                if (!isAdded) return
                 Log.e("BOX_DETAILS", "Failure", t)
                 Toast.makeText(
                     requireContext(),
@@ -118,13 +118,13 @@ class BoxDetailsFragment : Fragment() {
                     call: Call<Map<String, Any>>,
                     response: Response<Map<String, Any>>
                 ) {
+                    if (!isAdded) return
                     if (response.isSuccessful) {
                         Toast.makeText(
                             requireContext(),
                             "Status updated successfully",
                             Toast.LENGTH_SHORT
                         ).show()
-
                         loadBoxDetails(boxId)
                     } else {
                         Toast.makeText(
@@ -136,6 +136,7 @@ class BoxDetailsFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<Map<String, Any>>, t: Throwable) {
+                    if (!isAdded) return
                     Toast.makeText(
                         requireContext(),
                         "Network error: ${t.message}",
@@ -153,7 +154,6 @@ class BoxDetailsFragment : Fragment() {
         tvFragile.text = "Fragile: ${if (box.fragile) "Yes" else "No"}"
         tvValuable.text = "Valuable: ${if (box.valuable) "Yes" else "No"}"
         tvItems.text = if (box.items.isNotEmpty()) box.items.joinToString(", ") else "No items"
-        tvQr.text = "QR: ${box.qr_identifier}"
 
         when (box.priority_color.lowercase()) {
             "red" -> tvPriority.setBackgroundResource(R.drawable.bg_priority_red)

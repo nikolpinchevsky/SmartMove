@@ -7,7 +7,7 @@
     android:padding="24dp"
     android:background="@android:color/white">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Choose Avatar"
@@ -16,7 +16,7 @@
         android:textColor="@android:color/black"
         android:layout_marginBottom="16dp" />
 
-    <ImageView
+    <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivAvatarOption"
         android:layout_width="90dp"
         android:layout_height="90dp"

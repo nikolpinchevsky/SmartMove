@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Edit Box"
@@ -20,7 +20,7 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -42,7 +42,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="General Info"
@@ -50,7 +50,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEditBoxName"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -62,7 +62,7 @@
                     android:textColor="@color/smartmove_text_primary"
                     android:textColorHint="@color/smartmove_text_secondary" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEditRoom"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -74,7 +74,7 @@
                     android:textColor="@color/smartmove_text_primary"
                     android:textColorHint="@color/smartmove_text_secondary" />
 
-                <EditText
+                <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/etEditItems"
                     android:layout_width="match_parent"
                     android:layout_height="56dp"
@@ -102,7 +102,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Priority"
@@ -116,7 +116,7 @@
                     android:layout_marginTop="14dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/chipEditRed"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
@@ -128,7 +128,7 @@
                         android:textColor="@color/smartmove_text_primary"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/chipEditYellow"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
@@ -141,7 +141,7 @@
                         android:textColor="@color/smartmove_text_primary"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/chipEditGreen"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
@@ -171,7 +171,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Attributes"
@@ -192,14 +192,14 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Fragile"
                             android:textColor="@color/smartmove_text_primary"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -228,14 +228,14 @@
                         android:layout_weight="1"
                         android:orientation="vertical">
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Valuable"
                             android:textColor="@color/smartmove_text_primary"
                             android:textStyle="bold" />
 
-                        <TextView
+                        <androidx.appcompat.widget.AppCompatTextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="2dp"
@@ -253,15 +253,15 @@
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSaveBoxChanges"
             android:layout_width="match_parent"
             android:layout_height="54dp"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/smartmove_blue"
+            android:background="@drawable/bg_secondary_button"
             android:text="Save Changes"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textStyle="bold" />
 
     </LinearLayout>

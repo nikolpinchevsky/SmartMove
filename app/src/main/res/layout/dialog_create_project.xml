@@ -6,7 +6,7 @@
     android:padding="24dp"
     android:background="@drawable/bg_dialog_project">
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDialogTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +15,7 @@
         android:textSize="22sp"
         android:textStyle="bold" />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvDialogSubtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -24,7 +24,7 @@
         android:textColor="@color/smartmove_text_secondary"
         android:textSize="14sp" />
 
-    <EditText
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/etProjectName"
         android:layout_width="match_parent"
         android:layout_height="52dp"
@@ -44,26 +44,28 @@
         android:gravity="end"
         android:orientation="horizontal">
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCancelProject"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_marginEnd="10dp"
-            android:backgroundTint="#E5E7EB"
+            android:background="@drawable/bg_primary_button"
             android:text="Cancel"
             android:textAllCaps="false"
-            android:textColor="@color/smartmove_text_primary"
-            android:textStyle="bold" />
+            android:textColor="@color/black"
+            android:textStyle="bold" >
+        </androidx.appcompat.widget.AppCompatButton>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnCreateProject"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
-            android:background="@drawable/bg_login_button"
+            android:background="@drawable/bg_secondary_button"
             android:text="Create"
             android:textAllCaps="false"
-            android:textColor="@android:color/white"
-            android:textStyle="bold" />
+            android:textColor="@android:color/black"
+            android:textStyle="bold" >
+        </androidx.appcompat.widget.AppCompatButton>
     </LinearLayout>
 
 </LinearLayout>

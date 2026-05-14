@@ -156,9 +156,9 @@ class HomeFragment : Fragment() {
         val dialogView = LayoutInflater.from(requireContext())
             .inflate(R.layout.dialog_create_project, null, false)
 
-        val etProjectName = dialogView.findViewById<EditText>(R.id.etProjectName)
-        val btnCancelProject = dialogView.findViewById<Button>(R.id.btnCancelProject)
-        val btnCreateProject = dialogView.findViewById<Button>(R.id.btnCreateProject)
+        val etProjectName = dialogView.findViewById<androidx.appcompat.widget.AppCompatEditText>(R.id.etProjectName)
+        val btnCancelProject = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnCancelProject)
+        val btnCreateProject = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnCreateProject)
 
         val dialog = AlertDialog.Builder(requireContext())
             .setView(dialogView)

@@ -15,7 +15,7 @@
         android:paddingTop="18dp"
         android:paddingBottom="24dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivHero"
             android:layout_width="230dp"
             android:layout_height="180dp"
@@ -25,16 +25,16 @@
             android:scaleType="fitCenter"
             android:src="@drawable/smartmove_hero" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="SmartMove"
-            android:textColor="@color/smartmove_blue"
+            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -72,14 +72,14 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_dialog_email"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="email icon" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etEmail"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -103,14 +103,14 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_lock_lock"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="password icon" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etPassword"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -124,24 +124,25 @@
                         android:textColorHint="@color/smartmove_text_secondary"
                         android:textSize="16sp" />
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivPasswordEye"
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_menu_view"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="show password" />
                 </LinearLayout>
 
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnLogin"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_login_button"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/bg_primary_button"
                     android:text="Log In"
                     android:textAllCaps="false"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
@@ -158,7 +159,7 @@
                         android:layout_weight="1"
                         android:background="@color/smartmove_divider" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="12dp"
@@ -174,15 +175,15 @@
                         android:background="@color/smartmove_divider" />
                 </LinearLayout>
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvSignUp"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="16dp"
-                    android:background="@drawable/bg_signup_button"
+                    android:background="@drawable/bg_secondary_button"
                     android:gravity="center"
                     android:text="Sign Up"
-                    android:textColor="@color/smartmove_blue"
+                    android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 

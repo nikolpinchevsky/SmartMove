@@ -14,7 +14,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPriorityBoxName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -23,7 +23,7 @@
             android:textSize="18sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvPriorityBoxRoom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -38,7 +38,7 @@
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPriorityChip"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"
@@ -50,7 +50,7 @@
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
-            <TextView
+            <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvPriorityStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="32dp"

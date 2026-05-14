@@ -13,7 +13,7 @@
         android:background="@drawable/bg_qr_dialog"
         android:padding="24dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -22,7 +22,7 @@
             android:textSize="20sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -39,14 +39,14 @@
             android:background="@drawable/bg_qr_container"
             android:padding="12dp">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/ivQrCode"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="QR Code" />
         </FrameLayout>
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvQrIdentifier"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -63,24 +63,24 @@
             android:layout_marginTop="24dp"
             android:orientation="horizontal">
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnSave"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
-                android:background="@drawable/bg_button_primary"
+                android:background="@drawable/bg_primary_button"
                 android:text="Save"
-                android:textColor="@android:color/white" />
+                android:textColor="@color/black" />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnClose"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginStart="12dp"
-                android:background="@drawable/bg_button_outline"
+                android:background="@drawable/bg_secondary_button"
                 android:text="Close"
-                android:textColor="#F5F5FA" />
+                android:textColor="@color/black" />
         </LinearLayout>
 
     </LinearLayout>

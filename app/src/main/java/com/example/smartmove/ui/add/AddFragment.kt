@@ -9,6 +9,8 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.net.Uri
+import android.graphics.ImageDecoder
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -78,6 +80,41 @@ class AddFragment : Fragment() {
                 analyzeBitmapWithAi(bitmap)
             } else {
                 tvAiStatus.text = "No photo captured"
+                btnAnalyzeWithAi.isEnabled = true
+            }
+        }
+
+    private val galleryLauncher =
+        registerForActivityResult(ActivityResultContracts.GetMultipleContents()) { uris: List<Uri> ->
+
+            if (uris.isNotEmpty()) {
+                tvAiStatus.text = "Analyzing ${uris.size} images..."
+
+                uris.forEach { uri ->
+                    try {
+                        val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                            val source = ImageDecoder.createSource(
+                                requireContext().contentResolver,
+                                uri
+                            )
+                            ImageDecoder.decodeBitmap(source)
+                        } else {
+                            MediaStore.Images.Media.getBitmap(
+                                requireContext().contentResolver,
+                                uri
+                            )
+                        }
+
+                        analyzeBitmapWithAi(bitmap)
+
+                    } catch (e: Exception) {
+                        tvAiStatus.text = "Failed to load one of the images"
+                        btnAnalyzeWithAi.isEnabled = true
+                    }
+                }
+
+            } else {
+                tvAiStatus.text = "No image selected"
                 btnAnalyzeWithAi.isEnabled = true
             }
         }
@@ -154,20 +191,53 @@ class AddFragment : Fragment() {
 
     private fun setupAiButton() {
         btnAnalyzeWithAi.setOnClickListener {
+
             btnAnalyzeWithAi.isEnabled = false
 
-            if (
-                ContextCompat.checkSelfPermission(
-                    requireContext(),
-                    Manifest.permission.CAMERA
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
-                tvAiStatus.text = "Opening camera..."
-                cameraLauncher.launch(null)
-            } else {
-                tvAiStatus.text = "Requesting camera permission..."
-                cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_image_source, null)
+
+            val dialog = AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .create()
+
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+            val optionCamera = dialogView.findViewById<View>(R.id.optionCamera)
+            val optionGallery = dialogView.findViewById<View>(R.id.optionGallery)
+            val btnCancel = dialogView.findViewById<View>(R.id.btnCancel)
+
+            optionCamera.setOnClickListener {
+                dialog.dismiss()
+
+                if (ContextCompat.checkSelfPermission(
+                        requireContext(),
+                        Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    tvAiStatus.text = "Opening camera..."
+                    cameraLauncher.launch(null)
+                } else {
+                    tvAiStatus.text = "Requesting camera permission..."
+                    cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+                }
             }
+
+            optionGallery.setOnClickListener {
+                dialog.dismiss()
+                tvAiStatus.text = "Opening gallery..."
+                galleryLauncher.launch("image/*")
+            }
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+                btnAnalyzeWithAi.isEnabled = true
+            }
+
+            dialog.setOnCancelListener {
+                btnAnalyzeWithAi.isEnabled = true
+            }
+
+            dialog.show()
         }
     }
 
@@ -190,6 +260,8 @@ class AddFragment : Fragment() {
                     call: Call<AiAnalyzeResponse>,
                     response: Response<AiAnalyzeResponse>
                 ) {
+                    if (!isAdded) return
+                    file.delete()
                     btnAnalyzeWithAi.isEnabled = true
 
                     if (response.isSuccessful && response.body() != null) {
@@ -208,6 +280,8 @@ class AddFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<AiAnalyzeResponse>, t: Throwable) {
+                    if (!isAdded) return
+                    file.delete()
                     btnAnalyzeWithAi.isEnabled = true
                     tvAiStatus.text = "Network error"
                     Log.e("AI", "Failure", t)
@@ -216,17 +290,56 @@ class AddFragment : Fragment() {
     }
 
     private fun applyAiSuggestions(ai: AiAnalyzeResponse) {
-        val s = ai.form_suggestions ?: return
 
-        s.name?.let { etBoxName.setText(it) }
-        s.destination_room?.let { selectRoomIfExists(it) }
+        val suggestions = ai.form_suggestions ?: return
 
-        switchFragile.isChecked = s.fragile ?: false
-        switchValuable.isChecked = s.valuable ?: false
+        if (!suggestions.name.isNullOrBlank()) {
+            etBoxName.setText(suggestions.name)
+        }
 
-        s.priority_color?.let {
-            selectedPriority = it.lowercase()
-            updatePrioritySelection()
+        val existingItems = etItems.text.toString()
+            .split(",")
+            .map { it.trim() }
+            .filter { it.isNotEmpty() }
+            .toMutableList()
+
+        val newItems = suggestions.items
+            ?.map { it.trim() }
+            ?.filter { it.isNotEmpty() }
+            ?: emptyList()
+
+        val mergedItems = (existingItems + newItems)
+            .distinctBy { it.lowercase() }
+
+        etItems.setText(mergedItems.joinToString(", "))
+
+        if (suggestions.fragile == true) {
+            switchFragile.isChecked = true
+        }
+
+        if (suggestions.valuable == true) {
+            switchValuable.isChecked = true
+        }
+
+        if (suggestions.priority_color == "red") {
+            selectedPriority = "red"
+        } else if (selectedPriority != "red" && suggestions.priority_color == "yellow") {
+            selectedPriority = "yellow"
+        }
+
+        updatePrioritySelection()
+
+        val suggestedRoom = suggestions.destination_room ?: ""
+
+        if (selectedRoom.isBlank() || selectedRoom.equals("general", ignoreCase = true)) {
+            val roomIndex = roomsList.indexOfFirst {
+                it.name.equals(suggestedRoom, ignoreCase = true)
+            }
+
+            if (roomIndex >= 0) {
+                spinnerRooms.setSelection(roomIndex)
+                selectedRoom = roomsList[roomIndex].name
+            }
         }
     }
 
@@ -278,16 +391,17 @@ class AddFragment : Fragment() {
                 call: Call<ActiveProjectResponse>,
                 response: Response<ActiveProjectResponse>
             ) {
+                if (!isAdded) return
                 val project = response.body()?.project ?: run {
                     Toast.makeText(requireContext(), "No active project found", Toast.LENGTH_SHORT).show()
                     return
                 }
-
                 activeProjectId = project.id
                 loadRooms()
             }
 
             override fun onFailure(call: Call<ActiveProjectResponse>, t: Throwable) {
+                if (!isAdded) return
                 Toast.makeText(requireContext(), "Error loading project", Toast.LENGTH_SHORT).show()
             }
         })
@@ -299,6 +413,7 @@ class AddFragment : Fragment() {
                 call: Call<RoomsResponse>,
                 response: Response<RoomsResponse>
             ) {
+                if (!isAdded) return
                 roomsList = response.body()?.rooms?.toMutableList() ?: mutableListOf()
 
                 val roomNames = roomsList.map { it.name }.toMutableList()
@@ -338,6 +453,7 @@ class AddFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<RoomsResponse>, t: Throwable) {
+                if (!isAdded) return
                 Toast.makeText(requireContext(), "Failed to load rooms", Toast.LENGTH_SHORT).show()
             }
         })
@@ -378,6 +494,7 @@ class AddFragment : Fragment() {
 
         RetrofitClient.api.createRoom(request).enqueue(object : Callback<RoomResponse> {
             override fun onResponse(call: Call<RoomResponse>, response: Response<RoomResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     selectedRoom = roomName
                     loadRooms()
@@ -388,6 +505,7 @@ class AddFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<RoomResponse>, t: Throwable) {
+                if (!isAdded) return
                 Toast.makeText(requireContext(), "Failed to create room", Toast.LENGTH_SHORT).show()
             }
         })
@@ -428,39 +546,13 @@ class AddFragment : Fragment() {
             itemsText.split(",").map { it.trim() }.filter { it.isNotEmpty() }
         }
 
-        getActiveProjectAndCreateBox(
-            boxName,
-            room,
-            itemsList,
-            fragile,
-            valuable
-        )
-    }
+        val projectId = activeProjectId
+        if (projectId == null) {
+            Toast.makeText(requireContext(), "No active project found", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-    private fun getActiveProjectAndCreateBox(
-        boxName: String,
-        room: String,
-        items: List<String>,
-        fragile: Boolean,
-        valuable: Boolean
-    ) {
-        RetrofitClient.api.getActiveProject().enqueue(object : Callback<ActiveProjectResponse> {
-            override fun onResponse(
-                call: Call<ActiveProjectResponse>,
-                response: Response<ActiveProjectResponse>
-            ) {
-                val project = response.body()?.project ?: run {
-                    Toast.makeText(requireContext(), "No active project found", Toast.LENGTH_SHORT).show()
-                    return
-                }
-
-                createBox(project.id, boxName, room, items, fragile, valuable)
-            }
-
-            override fun onFailure(call: Call<ActiveProjectResponse>, t: Throwable) {
-                Toast.makeText(requireContext(), "Error loading project", Toast.LENGTH_SHORT).show()
-            }
-        })
+        createBox(projectId, boxName, room, itemsList, fragile, valuable)
     }
 
     private fun createBox(
@@ -484,6 +576,7 @@ class AddFragment : Fragment() {
 
         RetrofitClient.api.createBox(request).enqueue(object : Callback<BoxResponse> {
             override fun onResponse(call: Call<BoxResponse>, response: Response<BoxResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful && response.body() != null) {
                     val savedBox = response.body()!!
 
@@ -503,6 +596,7 @@ class AddFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxResponse>, t: Throwable) {
+                if (!isAdded) return
                 Toast.makeText(requireContext(), "Error saving box", Toast.LENGTH_SHORT).show()
             }
         })
@@ -524,10 +618,10 @@ class AddFragment : Fragment() {
     private fun showQrDialog(qrIdentifier: String, boxNumber: Int?) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_qr_code, null)
 
-        val ivQrCode = dialogView.findViewById<ImageView>(R.id.ivQrCode)
-        val tvQrIdentifier = dialogView.findViewById<TextView>(R.id.tvQrIdentifier)
-        val btnSave = dialogView.findViewById<Button>(R.id.btnSave)
-        val btnClose = dialogView.findViewById<Button>(R.id.btnClose)
+        val ivQrCode = dialogView.findViewById<androidx.appcompat.widget.AppCompatImageView>(R.id.ivQrCode)
+        val tvQrIdentifier = dialogView.findViewById<androidx.appcompat.widget.AppCompatTextView>(R.id.tvQrIdentifier)
+        val btnSave = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnSave)
+        val btnClose = dialogView.findViewById<androidx.appcompat.widget.AppCompatButton>(R.id.btnClose)
 
         val bitmap = generateQrBitmap(qrIdentifier)
         ivQrCode.setImageBitmap(bitmap)

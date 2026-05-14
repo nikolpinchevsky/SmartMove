@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.Toast
 import android.widget.Switch
@@ -31,8 +30,6 @@ class EditBoxFragment : Fragment() {
     private lateinit var chipEditYellow: TextView
 
     private lateinit var chipEditGreen: TextView
-    private lateinit var cbEditFragile: CheckBox
-    private lateinit var cbEditValuable: CheckBox
     private lateinit var btnSaveBoxChanges: Button
     private lateinit var switchFragile: Switch
     private lateinit var switchValuable: Switch
@@ -74,6 +71,7 @@ class EditBoxFragment : Fragment() {
     private fun loadBoxDetails(boxId: String) {
         RetrofitClient.api.getBoxById(boxId).enqueue(object : Callback<BoxResponse> {
             override fun onResponse(call: Call<BoxResponse>, response: Response<BoxResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful && response.body() != null) {
                     bindBoxToForm(response.body()!!)
                 } else {
@@ -82,6 +80,7 @@ class EditBoxFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxResponse>, t: Throwable) {
+                if (!isAdded) return
                 Log.e("EDIT_BOX", "Load failure", t)
                 Toast.makeText(requireContext(), "Network error: ${t.message}", Toast.LENGTH_LONG).show()
             }
@@ -178,6 +177,7 @@ class EditBoxFragment : Fragment() {
 
         RetrofitClient.api.updateBox(boxId, request).enqueue(object : Callback<BoxResponse> {
             override fun onResponse(call: Call<BoxResponse>, response: Response<BoxResponse>) {
+                if (!isAdded) return
                 if (response.isSuccessful) {
                     Toast.makeText(requireContext(), "Box updated successfully", Toast.LENGTH_SHORT).show()
 
@@ -200,6 +200,7 @@ class EditBoxFragment : Fragment() {
             }
 
             override fun onFailure(call: Call<BoxResponse>, t: Throwable) {
+                if (!isAdded) return
                 Log.e("EDIT_BOX", "Save failure", t)
                 Toast.makeText(requireContext(), "Network error: ${t.message}", Toast.LENGTH_LONG).show()
             }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
@@ -15,7 +16,7 @@
         android:paddingTop="22dp"
         android:paddingBottom="24dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/ivHero"
             android:layout_width="210dp"
             android:layout_height="160dp"
@@ -23,17 +24,17 @@
             android:scaleType="fitCenter"
             android:contentDescription="SmartMove hero" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="Create Account"
-            android:textColor="@color/smartmove_blue"
+            android:textColor="@color/black"
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/tvSubtitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -49,8 +50,7 @@
             android:layout_marginTop="22dp"
             android:elevation="8dp"
             app:cardBackgroundColor="@android:color/white"
-            app:cardCornerRadius="22dp"
-            xmlns:app="http://schemas.android.com/apk/res-auto">
+            app:cardCornerRadius="22dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,14 +68,14 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_menu_myplaces"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="name icon" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etFullName"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -99,14 +99,14 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_dialog_email"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="email icon" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etEmail"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -130,14 +130,14 @@
                     android:paddingStart="14dp"
                     android:paddingEnd="14dp">
 
-                    <ImageView
+                    <androidx.appcompat.widget.AppCompatImageView
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:src="@android:drawable/ic_lock_lock"
-                        android:tint="@color/smartmove_text_secondary"
+                        app:tint="@color/smartmove_text_secondary"
                         android:contentDescription="password icon" />
 
-                    <EditText
+                    <androidx.appcompat.widget.AppCompatEditText
                         android:id="@+id/etPassword"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
@@ -151,27 +151,26 @@
                         android:textSize="16sp" />
                 </LinearLayout>
 
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnCreateAccount"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
                     android:layout_marginTop="18dp"
-                    android:background="@drawable/bg_login_button"
+                    android:background="@drawable/bg_secondary_button"
                     android:text="Create Account"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white"
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvBackToLogin"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="18dp"
                     android:text="Back to Login"
-                    android:textColor="@color/smartmove_blue"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

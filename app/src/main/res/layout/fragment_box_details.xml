@@ -12,7 +12,7 @@
         android:orientation="vertical"
         android:padding="20dp">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Box Details"
@@ -20,7 +20,7 @@
             android:textSize="28sp"
             android:textStyle="bold" />
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
@@ -42,7 +42,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsBoxName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -51,14 +51,14 @@
                     android:textSize="22sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsBoxNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
                     android:text="Box number: 1"
                     android:textColor="@color/smartmove_text_secondary"
-                    android:textSize="15sp" />
+                    android:textSize="17sp" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
                     android:layout_marginTop="12dp"
                     android:orientation="horizontal">
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvDetailsPriority"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
@@ -78,7 +78,7 @@
                         android:textColor="@android:color/white"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatTextView
                         android:id="@+id/tvDetailsStatus"
                         android:layout_width="wrap_content"
                         android:layout_height="32dp"
@@ -109,7 +109,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="General Info"
@@ -117,7 +117,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsRoom"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +126,7 @@
                     android:textColor="@color/smartmove_text_primary"
                     android:textSize="16sp" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsFragile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -135,7 +135,7 @@
                     android:textColor="@color/smartmove_text_primary"
                     android:textSize="16sp" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsValuable"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -144,14 +144,6 @@
                     android:textColor="@color/smartmove_text_primary"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:id="@+id/tvDetailsQr"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="QR: box_123"
-                    android:textColor="@color/smartmove_text_primary"
-                    android:textSize="16sp" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
 
@@ -170,7 +162,7 @@
                 android:orientation="vertical"
                 android:padding="18dp">
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Items"
@@ -178,7 +170,7 @@
                     android:textSize="18sp"
                     android:textStyle="bold" />
 
-                <TextView
+                <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvDetailsItems"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -186,23 +178,25 @@
                     android:text="Plates, Cups, Bowls"
                     android:textColor="@color/smartmove_text_primary"
                     android:textSize="16sp" />
-                <Button
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnMarkOpened"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="18dp"
-                    android:backgroundTint="@color/smartmove_text_primary"
+                    android:background="@drawable/bg_primary_button"
                     android:text="Mark as Opened"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold" />
-                <Button
+
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/btnEditBox"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
                     android:layout_marginTop="12dp"
-                    android:backgroundTint="@color/smartmove_blue"
+                    android:background="@drawable/bg_secondary_button"
                     android:text="Edit Box"
-                    android:textColor="@android:color/white"
+                    android:textColor="@android:color/black"
                     android:textStyle="bold" />
             </LinearLayout>
         </androidx.cardview.widget.CardView>
