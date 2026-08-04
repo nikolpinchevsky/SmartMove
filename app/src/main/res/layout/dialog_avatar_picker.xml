@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="@dimen/spacing_24"
+    android:background="@drawable/bg_dialog_project">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_choose_avatar"
+        android:textSize="@dimen/text_size_title"
+        android:textStyle="bold"
+        android:textColor="@color/smartmove_text_primary" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_6"
+        android:text="@string/dialog_avatar_subtitle"
+        android:textSize="@dimen/text_size_body_sm"
+        android:textColor="@color/smartmove_text_secondary" />
+
+    <!-- Two avatars side by side -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <!-- Avatar 1 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/containerAvatar1"
+                android:layout_width="@dimen/size_avatar_frame"
+                android:layout_height="@dimen/size_avatar_frame"
+                android:background="@drawable/bg_avatar_unselected"
+                android:padding="@dimen/spacing_4"
+                android:clickable="true"
+                android:focusable="true">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAvatar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/label_avatar_1"
+                    tools:targetApi="31" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="@string/label_avatar_1"
+                android:textSize="@dimen/text_size_body_sm"
+                android:textColor="@color/smartmove_text_secondary" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="@dimen/spacing_28"
+            android:layout_height="1dp" />
+
+        <!-- Avatar 2 -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <FrameLayout
+                android:id="@+id/containerAvatar2"
+                android:layout_width="@dimen/size_avatar_frame"
+                android:layout_height="@dimen/size_avatar_frame"
+                android:background="@drawable/bg_avatar_unselected"
+                android:padding="@dimen/spacing_4"
+                android:clickable="true"
+                android:focusable="true">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivAvatar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:background="@drawable/circle_mask"
+                    android:clipToOutline="true"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/label_avatar_2"
+                    tools:targetApi="31" />
+            </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:text="@string/label_avatar_2"
+                android:textSize="@dimen/text_size_body_sm"
+                android:textColor="@color/smartmove_text_secondary" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Action buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing_24"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnCancelAvatar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_button_dialog"
+            android:layout_weight="1"
+            android:layout_marginEnd="@dimen/spacing_8"
+            android:background="@drawable/bg_secondary_button"
+            android:text="@string/btn_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/button_primary_color"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btnApplyAvatar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/height_button_dialog"
+            android:layout_weight="1"
+            android:background="@drawable/bg_primary_button"
+            android:text="@string/btn_apply"
+            android:textAllCaps="false"
+            android:textColor="@color/smartmove_text_secondary"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

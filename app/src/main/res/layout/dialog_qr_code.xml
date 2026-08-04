@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@android:color/transparent"
+    android:padding="@dimen/spacing_16">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_qr_dialog"
+        android:padding="@dimen/spacing_24">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/dialog_qr_title"
+            android:textColor="@color/qr_title_color"
+            android:textSize="@dimen/text_size_title_sm"
+            android:textStyle="bold" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_8"
+            android:text="@string/dialog_qr_subtitle"
+            android:textColor="@color/qr_subtitle_color"
+            android:textSize="@dimen/text_size_sm" />
+
+        <FrameLayout
+            android:layout_width="@dimen/size_qr_container"
+            android:layout_height="@dimen/size_qr_container"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/spacing_20"
+            android:background="@drawable/bg_qr_container"
+            android:padding="@dimen/spacing_12">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivQrCode"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:contentDescription="@string/cd_qr_code" />
+        </FrameLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvQrIdentifier"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:gravity="center"
+            android:text="@string/dialog_qr_box_number_placeholder"
+            android:textColor="@color/qr_title_color"
+            android:textSize="@dimen/text_size_title_sm"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_24"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSave"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_dialog"
+                android:layout_weight="1"
+                android:background="@drawable/bg_primary_button"
+                android:text="@string/btn_save"
+                android:textColor="@color/smartmove_text_secondary"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnClose"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/height_button_dialog"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/spacing_12"
+                android:background="@drawable/bg_secondary_button"
+                android:text="@string/btn_close"
+                android:textColor="@color/button_primary_color"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

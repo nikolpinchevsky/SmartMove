@@ -1,0 +1,285 @@
+<resources>
+    <string name="app_name">SmartMove</string>
+    <string name="cd_back_button">Back</string>
+    <string name="dialog_choose_avatar">Choose Avatar</string>
+    <string name="dialog_avatar_subtitle">Tap an avatar to select it</string>
+    <string name="btn_apply">Apply</string>
+    <string name="label_avatar_1">Style 1</string>
+    <string name="label_avatar_2">Style 2</string>
+
+    <!-- Auth: Login -->
+    <string name="login_subtitle">Move smarter</string>
+    <string name="btn_login">Log In</string>
+    <string name="btn_loading">Loading…</string>
+    <string name="btn_sign_up">Sign Up</string>
+    <string name="label_or">OR</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="error_enter_email">Please enter email</string>
+    <string name="error_enter_password">Please enter password</string>
+    <string name="error_login_failed">Login failed: %d</string>
+    <string name="error_network">Network error: %s</string>
+    <string name="msg_login_success">Login successful</string>
+    <string name="error_check_project">Could not check active project</string>
+    <string name="error_project_check_timed_out">Project check timed out</string>
+    <string name="error_project_check_failed">Project check failed: %s</string>
+    <string name="default_project_name">My First Move</string>
+    <string name="msg_project_created_success">Project created successfully</string>
+    <string name="error_create_project">Failed to create project: %d</string>
+    <string name="error_create_project_timed_out">Create project timed out</string>
+    <string name="error_create_project_failed">Error creating project: %s</string>
+
+    <!-- Auth: Sign Up -->
+    <string name="signup_title">Create Account</string>
+    <string name="signup_subtitle">Join SmartMove</string>
+    <string name="hint_full_name">Full Name</string>
+    <string name="btn_create_account">Create Account</string>
+    <string name="btn_back_to_login">Back to Login</string>
+    <string name="error_enter_full_name">Please enter full name</string>
+    <string name="error_password_too_short">Password must be at least 6 characters</string>
+    <string name="msg_registration_success">Registration successful</string>
+    <string name="error_registration_failed">Registration failed</string>
+
+    <!-- Nav labels -->
+    <string name="nav_home">Home</string>
+    <string name="nav_search">Search</string>
+    <string name="nav_add">Add</string>
+    <string name="nav_scan">Scan</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Home -->
+    <string name="home_welcome">Welcome to SmartMove</string>
+    <string name="home_active_project">Active Project</string>
+    <string name="home_project_placeholder">Apartment Move</string>
+    <string name="home_progress_default">0%</string>
+    <string name="home_project_description">Stay organized with smart box tracking</string>
+    <string name="btn_new_project">+  New Project</string>
+    <string name="home_stat_boxes">Boxes</string>
+    <string name="home_stat_opened">Opened</string>
+    <string name="home_stat_to_open">To Open</string>
+    <string name="home_stat_urgent">Urgent</string>
+    <string name="home_priority_boxes">Priority Boxes</string>
+    <string name="home_recent_boxes">Recent Boxes</string>
+    <string name="home_no_urgent_boxes">No urgent boxes</string>
+    <string name="home_no_boxes">No boxes yet — tap + to add your first box</string>
+    <string name="home_no_active_project">No Active Project</string>
+    <string name="home_stat_count_default">0</string>
+    <string name="home_progress_format">%d%%</string>
+    <string name="home_enter_project_name">Enter project name</string>
+    <string name="msg_project_created">Project created</string>
+    <string name="error_create_project_failed_code">Create project failed: %d</string>
+    <string name="error_create_project_error">Create project error: %s</string>
+
+    <!-- Add box -->
+    <string name="add_title">Add New Box</string>
+    <string name="add_subtitle">Create a digital box for your moving project</string>
+    <string name="add_ai_title">Smart AI Fill</string>
+    <string name="add_ai_subtitle">Take a photo and let AI suggest box details</string>
+    <string name="btn_try_ai">Try AI</string>
+    <string name="add_box_name_label">Box Name</string>
+    <string name="hint_box_name">e.g. Kitchen Essentials</string>
+    <string name="add_room_label">Destination Room</string>
+    <string name="add_items_label">Items</string>
+    <string name="hint_items">e.g. plates, cups, bowls</string>
+    <string name="add_priority_label">Priority</string>
+    <string name="priority_green">Green</string>
+    <string name="priority_yellow">Yellow</string>
+    <string name="priority_red">Red</string>
+    <string name="label_fragile">Fragile</string>
+    <string name="label_fragile_desc">Mark if the box contains breakable items</string>
+    <string name="label_valuable">Valuable</string>
+    <string name="label_valuable_desc">Mark if the box contains valuable items</string>
+    <string name="btn_save_box">Save Box</string>
+    <string name="ai_status_default">Use AI to fill automatically</string>
+    <string name="ai_status_no_photo">No photo captured</string>
+    <string name="ai_status_analyzing_images">Analyzing %d images…</string>
+    <string name="ai_status_failed_load">Failed to load one of the images</string>
+    <string name="ai_status_no_image">No image selected</string>
+    <string name="ai_status_opening_camera">Opening camera…</string>
+    <string name="ai_status_camera_denied">Camera permission denied</string>
+    <string name="ai_status_requesting_camera">Requesting camera permission…</string>
+    <string name="ai_status_opening_gallery">Opening gallery…</string>
+    <string name="ai_status_analyzing">Analyzing image…</string>
+    <string name="ai_status_failed_process">Failed to process image</string>
+    <string name="ai_status_success">AI filled the form ✔</string>
+    <string name="ai_status_failed">AI failed</string>
+    <string name="ai_status_network_error">Network error</string>
+    <string name="ai_status_error_code">Error: %d</string>
+    <string name="error_no_active_project">No active project found</string>
+    <string name="error_loading_project">Error loading project</string>
+    <string name="add_new_room">+ Add new room</string>
+    <string name="error_failed_load_rooms">Failed to load rooms</string>
+    <string name="hint_room_hint">e.g. Balcony</string>
+    <string name="dialog_add_room_title">Add new room</string>
+    <string name="btn_save">Save</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="error_room_name_empty">Room name is empty</string>
+    <string name="error_room_already_exists">Room already exists or error</string>
+    <string name="error_failed_create_room">Failed to create room</string>
+    <string name="msg_room_added">Room added</string>
+    <string name="error_enter_box_name">Please enter a box name</string>
+    <string name="error_select_room">Please select a destination room</string>
+    <string name="msg_box_saved">Box saved!</string>
+    <string name="error_saving_box">Error saving box</string>
+    <string name="msg_qr_saved">QR saved to gallery</string>
+    <string name="error_qr_save_failed">Failed to save QR</string>
+    <string name="error_storage_denied">Storage permission denied</string>
+    <string name="label_box_number">Box number: %s</string>
+
+    <!-- Scan -->
+    <string name="scan_title">Scan QR Code</string>
+    <string name="scan_subtitle">Scan a box to instantly view its details</string>
+    <string name="scan_camera_preview">Tap below to open the QR scanner</string>
+    <string name="scan_instructions">Point the camera at a SmartMove box QR code</string>
+    <string name="btn_start_scanning">Start Scanning</string>
+    <string name="scan_prompt">Scan a SmartMove box QR</string>
+    <string name="msg_scan_cancelled">Scan cancelled</string>
+    <string name="msg_box_scanned">Box scanned successfully</string>
+    <string name="error_box_not_found">Box not found for scanned QR</string>
+    <string name="scan_box_details_label">Scanned Box Details</string>
+    <string name="scan_status_ready">Ready to Scan</string>
+    <string name="scan_empty_state">No box scanned yet</string>
+    <string name="btn_open_full_details">Open Full Details</string>
+    <string name="scan_label_qr">QR: %s</string>
+    <string name="scan_label_room">Room: %s</string>
+    <string name="scan_label_fragile">Fragile: %s</string>
+    <string name="scan_label_valuable">Valuable: %s</string>
+    <string name="scan_no_items">No items added</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+
+    <!-- Box details -->
+    <string name="box_details_title">Box Details</string>
+    <string name="box_details_subtitle">View all information about this box</string>
+    <string name="box_general_info">General Info</string>
+    <string name="box_items_label">Items</string>
+    <string name="box_attributes_label">Attributes</string>
+    <string name="btn_mark_opened">Mark as Opened</string>
+    <string name="btn_already_opened">Already Opened</string>
+    <string name="btn_edit_box">Edit Box</string>
+    <string name="error_missing_box_id">Missing box id</string>
+    <string name="error_failed_load_box_details">Failed to load box details</string>
+    <string name="msg_status_updated">Status updated successfully</string>
+    <string name="error_update_status_failed">Failed to update status: %d</string>
+    <string name="details_box_number">Box number: %s</string>
+    <string name="details_room">Room: %s</string>
+    <string name="details_fragile">Fragile: %s</string>
+    <string name="details_valuable">Valuable: %s</string>
+    <string name="details_no_items">No items</string>
+
+    <!-- Edit box -->
+    <string name="edit_box_title">Edit Box</string>
+    <string name="edit_box_subtitle">Update box information</string>
+    <string name="hint_box_name_edit">Box name</string>
+    <string name="hint_room_edit">Destination room</string>
+    <string name="hint_items_edit">Items (comma separated)</string>
+    <string name="btn_save_changes">Save Changes</string>
+    <string name="error_enter_box_name_edit">Enter box name</string>
+    <string name="error_enter_room">Enter destination room</string>
+    <string name="error_failed_load_box">Failed to load box</string>
+    <string name="msg_box_updated">Box updated successfully</string>
+    <string name="error_update_box_failed">Failed to update box: %d</string>
+
+    <!-- Boxes list -->
+    <string name="list_title_default">Boxes</string>
+    <string name="list_subtitle_default">View your boxes</string>
+    <string name="list_empty">No boxes found</string>
+    <string name="list_empty_all">No boxes yet — add your first box from the Add tab</string>
+    <string name="list_empty_opened">No boxes have been opened yet</string>
+    <string name="list_empty_to_open">All boxes are already opened — great work!</string>
+    <string name="list_empty_urgent">No urgent boxes — everything is under control!</string>
+    <string name="list_title_all">All Boxes</string>
+    <string name="list_subtitle_all">All boxes in the active project</string>
+    <string name="list_title_opened">Opened Boxes</string>
+    <string name="list_subtitle_opened">Boxes that were already opened</string>
+    <string name="list_title_unpacked">Unpacked Boxes</string>
+    <string name="list_subtitle_unpacked">Boxes that were already unpacked</string>
+    <string name="home_see_all">See all</string>
+    <string name="list_title_priority">Priority Boxes</string>
+    <string name="list_subtitle_priority">Boxes requiring immediate attention</string>
+    <string name="list_title_urgent">Urgent Boxes</string>
+    <string name="list_subtitle_urgent">Priority boxes that should be handled first</string>
+    <string name="list_title_to_open">Boxes To Open</string>
+    <string name="list_subtitle_to_open">Boxes that are still closed</string>
+    <string name="error_failed_load_boxes">Failed to load boxes: %d</string>
+    <string name="error_failed_load_urgent_boxes">Failed to load urgent boxes: %d</string>
+
+    <!-- Search -->
+    <string name="search_title">Search Boxes</string>
+    <string name="search_subtitle">Find boxes by name, room, item or priority</string>
+    <string name="hint_search">Search boxes…</string>
+    <string name="search_filters">Filters</string>
+    <string name="filter_room">Room</string>
+    <string name="filter_priority">Priority</string>
+    <string name="filter_item">Item Name</string>
+    <string name="filter_status">Status</string>
+    <string name="search_results">Results</string>
+    <string name="search_empty">No boxes match your search</string>
+    <string name="error_search_failed">Search failed: %d</string>
+
+    <!-- Profile -->
+    <string name="profile_greeting_default">Hello, User</string>
+    <string name="profile_greeting">Hello, %s</string>
+    <string name="profile_subtitle">Manage your account and projects</string>
+    <string name="profile_change_avatar">Change Avatar</string>
+    <string name="profile_name_placeholder">Name</string>
+    <string name="profile_projects_label">Projects</string>
+    <string name="profile_current_project">Current Project:</string>
+    <string name="profile_project_placeholder">Project Name</string>
+    <string name="profile_other_projects">Other Projects</string>
+    <string name="btn_logout">Logout</string>
+    <string name="profile_unknown_user">Unknown User</string>
+    <string name="profile_no_projects">No projects yet</string>
+    <string name="error_load_projects_failed">Failed to load projects</string>
+    <string name="error_projects_error">Projects error</string>
+    <string name="error_switch_failed">Switch failed</string>
+
+    <!-- Project dialog -->
+    <string name="dialog_create_project_title">Create New Project</string>
+    <string name="dialog_create_project_subtitle">Start a new moving project. It will become your active project.</string>
+    <string name="hint_project_name">e.g. Apartment Move</string>
+    <string name="btn_create">Create</string>
+
+    <!-- QR dialog -->
+    <string name="dialog_qr_title">Box QR Code</string>
+    <string name="dialog_qr_subtitle">Scan to view box details</string>
+    <string name="dialog_qr_box_number_placeholder">Box number: 0</string>
+    <string name="btn_close">Close</string>
+
+    <!-- Image source dialog -->
+    <string name="cd_ai_image_icon">AI image icon</string>
+    <string name="dialog_select_image_source">Select Image Source</string>
+    <string name="dialog_image_source_subtitle">Choose how you want to add images for AI analysis</string>
+    <string name="cd_camera_icon">Camera icon</string>
+    <string name="dialog_take_photo">Take Photo</string>
+    <string name="dialog_open_camera">Open your camera</string>
+    <string name="label_chevron">›</string>
+    <string name="cd_gallery_icon">Gallery icon</string>
+    <string name="dialog_choose_gallery">Choose from Gallery</string>
+    <string name="dialog_pick_multiple">Pick multiple images</string>
+
+    <!-- Content descriptions -->
+    <string name="cd_hero_image">SmartMove hero</string>
+    <string name="cd_email_icon">email icon</string>
+    <string name="cd_password_icon">password icon</string>
+    <string name="cd_show_password">show password</string>
+    <string name="cd_name_icon">name icon</string>
+    <string name="cd_profile_avatar">Profile Avatar</string>
+    <string name="cd_box_priority_icon">Box priority icon</string>
+    <string name="cd_open_details">Open box details</string>
+    <string name="cd_qr_code">QR Code</string>
+    <string name="cd_qr_preview">QR preview</string>
+    <string name="cd_search_icon">search icon</string>
+
+    <!-- Placeholder sample values shown in layouts at design time only -->
+    <string name="placeholder_box_name">Kitchen Essentials</string>
+    <string name="placeholder_box_number">Box number: 1</string>
+    <string name="placeholder_status">Opened</string>
+    <string name="placeholder_room">Room: Kitchen</string>
+    <string name="placeholder_fragile">Fragile: Yes</string>
+    <string name="placeholder_valuable">Valuable: No</string>
+    <string name="placeholder_items">Plates, Cups, Bowls</string>
+    <string name="placeholder_qr">QR: SM-123</string>
+    <string name="placeholder_priority">Priority: Red</string>
+    <string name="placeholder_scan_items">plates, cups, glasses</string>
+</resources>

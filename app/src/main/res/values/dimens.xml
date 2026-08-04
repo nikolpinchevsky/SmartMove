@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Spacing Scale: used for margins, paddings, and gaps -->
+    <dimen name="spacing_2">2dp</dimen>
+    <dimen name="spacing_3">3dp</dimen>
+    <dimen name="spacing_4">4dp</dimen>
+    <dimen name="spacing_6">6dp</dimen>
+    <dimen name="spacing_8">8dp</dimen>
+    <dimen name="spacing_10">10dp</dimen>
+    <dimen name="spacing_12">12dp</dimen>
+    <dimen name="spacing_14">14dp</dimen>
+    <dimen name="spacing_16">16dp</dimen>
+    <dimen name="spacing_18">18dp</dimen>
+    <dimen name="spacing_20">20dp</dimen>
+    <dimen name="spacing_22">22dp</dimen>
+    <dimen name="spacing_24">24dp</dimen>
+    <dimen name="spacing_26">26dp</dimen>
+    <dimen name="spacing_28">28dp</dimen>
+    <!-- Bottom padding for fragments sitting above the floating nav bar -->
+    <dimen name="spacing_bottom_tabs">90dp</dimen>
+
+    <!-- Text Sizes -->
+    <dimen name="text_size_xs">12sp</dimen>
+    <dimen name="text_size_sm">13sp</dimen>
+    <dimen name="text_size_body_sm">14sp</dimen>
+    <dimen name="text_size_body">15sp</dimen>
+    <dimen name="text_size_body_lg">16sp</dimen>
+    <dimen name="text_size_subtitle_sm">17sp</dimen>
+    <dimen name="text_size_subtitle">18sp</dimen>
+    <dimen name="text_size_title_sm">20sp</dimen>
+    <dimen name="text_size_title">22sp</dimen>
+    <dimen name="text_size_title_md">24sp</dimen>
+    <dimen name="text_size_title_lg">26sp</dimen>
+    <dimen name="text_size_header">28sp</dimen>
+    <dimen name="text_size_chevron">34sp</dimen>
+
+    <!-- Component Heights -->
+    <dimen name="height_divider">1dp</dimen>
+    <dimen name="height_progress_bar">6dp</dimen>
+    <dimen name="height_chip">32dp</dimen>
+    <dimen name="height_filter_chip">40dp</dimen>
+    <dimen name="height_button_ai_mini">42dp</dimen>
+    <dimen name="height_priority_selector">46dp</dimen>
+    <dimen name="height_button_dialog">48dp</dimen>
+    <dimen name="height_button_action">50dp</dimen>
+    <dimen name="height_input">52dp</dimen>
+    <dimen name="height_button_primary">54dp</dimen>
+    <dimen name="height_input_edit">56dp</dimen>
+    <dimen name="height_bottom_nav">72dp</dimen>
+    <dimen name="height_textarea_min">100dp</dimen>
+    <dimen name="height_scanner_card">430dp</dimen>
+
+    <!-- Component Sizes (widths, icon sizes, fixed square dimensions) -->
+    <dimen name="size_icon_input">20dp</dimen>
+    <dimen name="size_icon_sm">24dp</dimen>
+    <dimen name="size_icon_option">48dp</dimen>
+    <dimen name="size_icon_ai_frame">52dp</dimen>
+    <dimen name="size_icon_ai_header">74dp</dimen>
+    <dimen name="size_avatar_image">80dp</dimen>
+    <dimen name="size_avatar_frame">90dp</dimen>
+    <dimen name="size_scan_qr_icon">110dp</dimen>
+    <dimen name="size_scan_frame">210dp</dimen>
+    <dimen name="size_hero_signup_width">210dp</dimen>
+    <dimen name="size_hero_signup_height">160dp</dimen>
+    <dimen name="size_hero_login_width">230dp</dimen>
+    <dimen name="size_hero_login_height">180dp</dimen>
+    <dimen name="size_qr_container">250dp</dimen>
+    <dimen name="size_dialog_image_source">340dp</dimen>
+
+    <!-- Corner Radii -->
+    <dimen name="corner_sm">14dp</dimen>
+    <dimen name="corner_md">18dp</dimen>
+    <dimen name="corner_lg">20dp</dimen>
+    <dimen name="corner_xl">22dp</dimen>
+    <dimen name="corner_2xl">24dp</dimen>
+    <dimen name="corner_3xl">26dp</dimen>
+    <!-- Full pill radius for all buttons -->
+    <dimen name="corner_button">28dp</dimen>
+
+    <!-- Elevations -->
+    <dimen name="elevation_card">2dp</dimen>
+    <dimen name="elevation_card_sm">3dp</dimen>
+    <dimen name="elevation_card_md">4dp</dimen>
+    <dimen name="elevation_card_lg">5dp</dimen>
+    <dimen name="elevation_card_xl">6dp</dimen>
+    <dimen name="elevation_card_2xl">8dp</dimen>
+
+</resources>

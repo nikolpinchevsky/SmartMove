@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/spacing_14"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?attr/selectableItemBackground"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="@dimen/corner_2xl"
+    app:cardElevation="@dimen/elevation_card_md">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:baselineAligned="false"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Left priority accent bar -->
+        <View
+            android:id="@+id/viewPriorityLine"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="@color/priority_accent_red" />
+
+        <!-- Box icon -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPriorityBoxIcon"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:layout_marginStart="@dimen/spacing_16"
+            android:contentDescription="@string/cd_box_priority_icon"
+            android:src="@drawable/red_box" />
+
+        <!-- Text content -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/spacing_14"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPriorityBoxName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/smartmove_text_primary"
+                android:textSize="@dimen/text_size_body_lg"
+                android:textStyle="bold"
+                tools:text="Kitchen Items" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvPriorityBoxRoom"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_3"
+                android:textColor="@color/smartmove_text_secondary"
+                android:textSize="@dimen/text_size_xs"
+                tools:text="Room: Kitchen" />
+
+            <!-- Priority + Status chips -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_8"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPriorityChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_chip"
+                    android:background="@drawable/bg_priority_red"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_12"
+                    android:paddingEnd="@dimen/spacing_12"
+                    android:textColor="@color/priority_red_text"
+                    android:textSize="@dimen/text_size_xs"
+                    android:textStyle="bold"
+                    tools:text="Red" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPriorityStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/height_chip"
+                    android:layout_marginStart="@dimen/spacing_8"
+                    android:background="@drawable/bg_chip_soft"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_12"
+                    android:paddingEnd="@dimen/spacing_12"
+                    android:textColor="@color/smartmove_text_primary"
+                    android:textSize="@dimen/text_size_xs"
+                    android:textStyle="bold"
+                    tools:text="Closed" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Chevron arrow -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivPriorityArrow"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/spacing_8"
+            android:layout_marginEnd="@dimen/spacing_16"
+            android:contentDescription="@string/cd_open_details"
+            android:rotation="180"
+            android:src="@drawable/ic_back_arrow"
+            android:tint="@color/smartmove_divider" />
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

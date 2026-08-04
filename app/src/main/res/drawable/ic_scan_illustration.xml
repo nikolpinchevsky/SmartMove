@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="96dp"
+    android:height="96dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Background circle -->
+    <path
+        android:fillColor="#EEF2FF"
+        android:pathData="M6,50 A44,44 0 0 1 94,50 A44,44 0 0 1 6,50 Z" />
+
+    <!-- Outer QR border (subtle) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M20,20 L80,20 L80,80 L20,80 Z"
+        android:strokeColor="#C7D2FE"
+        android:strokeWidth="1" />
+
+    <!-- Finder TL: outer frame -->
+    <path
+        android:fillColor="#EEF2FF"
+        android:pathData="M22,22 L38,22 L38,38 L22,38 Z"
+        android:strokeColor="#6366F1"
+        android:strokeWidth="1.5" />
+    <!-- Finder TL: inner block -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M25,25 L35,25 L35,35 L25,35 Z" />
+    <!-- Finder TL: center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,28 L32,28 L32,32 L28,32 Z" />
+
+    <!-- Finder TR: outer frame -->
+    <path
+        android:fillColor="#EEF2FF"
+        android:pathData="M62,22 L78,22 L78,38 L62,38 Z"
+        android:strokeColor="#6366F1"
+        android:strokeWidth="1.5" />
+    <!-- Finder TR: inner block -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M65,25 L75,25 L75,35 L65,35 Z" />
+    <!-- Finder TR: center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M68,28 L72,28 L72,32 L68,32 Z" />
+
+    <!-- Finder BL: outer frame -->
+    <path
+        android:fillColor="#EEF2FF"
+        android:pathData="M22,62 L38,62 L38,78 L22,78 Z"
+        android:strokeColor="#6366F1"
+        android:strokeWidth="1.5" />
+    <!-- Finder BL: inner block -->
+    <path
+        android:fillColor="#6366F1"
+        android:pathData="M25,65 L35,65 L35,75 L25,75 Z" />
+    <!-- Finder BL: center dot -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M28,68 L32,68 L32,72 L28,72 Z" />
+
+    <!-- Data modules: middle strip (between TL and TR finders, y=24-36) -->
+    <path android:fillColor="#818CF8" android:pathData="M42,24 L45,24 L45,27 L42,27 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M54,24 L57,24 L57,27 L54,27 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M48,30 L51,30 L51,33 L48,33 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M42,36 L45,36 L45,39 L42,39 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M54,36 L57,36 L57,39 L54,39 Z" />
+
+    <!-- Data modules: row y=42 (full width, above BL finder) -->
+    <path android:fillColor="#818CF8" android:pathData="M24,42 L27,42 L27,45 L24,45 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M36,42 L39,42 L39,45 L36,45 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M48,42 L51,42 L51,45 L48,45 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M60,42 L63,42 L63,45 L60,45 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M72,42 L75,42 L75,45 L72,45 Z" />
+
+    <!-- Data modules: row y=48 -->
+    <path android:fillColor="#C7D2FE" android:pathData="M30,48 L33,48 L33,51 L30,51 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M42,48 L45,48 L45,51 L42,51 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M60,48 L63,48 L63,51 L60,51 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M66,48 L69,48 L69,51 L66,51 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M78,48 L81,48 L81,51 L78,51 Z" />
+
+    <!-- Data modules: row y=54 -->
+    <path android:fillColor="#818CF8" android:pathData="M24,54 L27,54 L27,57 L24,57 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M48,54 L51,54 L51,57 L48,57 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M54,54 L57,54 L57,57 L54,57 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M72,54 L75,54 L75,57 L72,57 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M78,54 L81,54 L81,57 L78,57 Z" />
+
+    <!-- Data modules: row y=60 -->
+    <path android:fillColor="#C7D2FE" android:pathData="M30,60 L33,60 L33,63 L30,63 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M36,60 L39,60 L39,63 L36,63 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M60,60 L63,60 L63,63 L60,63 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M66,60 L69,60 L69,63 L66,63 Z" />
+
+    <!-- Data modules: rows y=66-78 (right of BL finder) -->
+    <path android:fillColor="#C7D2FE" android:pathData="M42,66 L45,66 L45,69 L42,69 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M54,66 L57,66 L57,69 L54,69 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M66,66 L69,66 L69,69 L66,69 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M78,66 L81,66 L81,69 L78,69 Z" />
+
+    <path android:fillColor="#818CF8" android:pathData="M48,72 L51,72 L51,75 L48,75 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M60,72 L63,72 L63,75 L60,75 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M72,72 L75,72 L75,75 L72,75 Z" />
+
+    <path android:fillColor="#C7D2FE" android:pathData="M42,78 L45,78 L45,81 L42,81 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M54,78 L57,78 L57,81 L54,81 Z" />
+    <path android:fillColor="#C7D2FE" android:pathData="M66,78 L69,78 L69,81 L66,81 Z" />
+    <path android:fillColor="#818CF8" android:pathData="M78,78 L81,78 L81,81 L78,81 Z" />
+
+    <!-- Corner scan brackets (outside QR frame, at canvas edges) -->
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M16,25 L16,16 L25,16"
+        android:strokeColor="#818CF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M84,25 L84,16 L75,16"
+        android:strokeColor="#818CF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M16,75 L16,84 L25,84"
+        android:strokeColor="#818CF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+    <path
+        android:fillColor="#00000000"
+        android:pathData="M84,75 L84,84 L75,84"
+        android:strokeColor="#818CF8"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:strokeWidth="2.5" />
+</vector>

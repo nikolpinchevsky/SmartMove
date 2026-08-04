@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/size_dialog_image_source"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_ai_dialog"
+    android:padding="@dimen/spacing_26">
+
+    <FrameLayout
+        android:layout_width="@dimen/size_icon_ai_header"
+        android:layout_height="@dimen/size_icon_ai_header"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_ai_icon">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/size_icon_ai_header"
+            android:layout_height="@dimen/size_icon_ai_header"
+            android:layout_gravity="center"
+            android:src="@drawable/image"
+            android:contentDescription="@string/cd_ai_image_icon" />
+    </FrameLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_select_image_source"
+        android:textColor="@color/smartmove_text_primary"
+        android:textSize="@dimen/text_size_title_md"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/spacing_18" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_image_source_subtitle"
+        android:textColor="@color/smartmove_text_secondary"
+        android:textSize="@dimen/text_size_body"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/spacing_3"
+        android:layout_marginTop="@dimen/spacing_8"
+        android:layout_marginBottom="@dimen/spacing_24" />
+
+    <LinearLayout
+        android:id="@+id/optionCamera"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_icon_ai_header"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_14"
+        android:background="@drawable/bg_ai_option_card"
+        android:clickable="true"
+        android:focusable="true">
+
+        <FrameLayout
+            android:layout_width="@dimen/size_icon_option"
+            android:layout_height="@dimen/size_icon_option"
+            android:background="@drawable/bg_ai_icon">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/size_icon_option"
+                android:layout_height="@dimen/size_icon_option"
+                android:layout_gravity="center"
+                android:src="@drawable/camera"
+                android:contentDescription="@string/cd_camera_icon" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_16">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_take_photo"
+                android:textColor="@color/smartmove_text_primary"
+                android:textSize="@dimen/text_size_subtitle_sm"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_open_camera"
+                android:textColor="@color/smartmove_text_secondary"
+                android:textSize="@dimen/text_size_body_sm"
+                android:layout_marginTop="@dimen/spacing_3" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_chevron"
+            android:textColor="@color/smartmove_divider"
+            android:textSize="@dimen/text_size_chevron" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/optionGallery"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/size_icon_ai_header"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="@dimen/spacing_14"
+        android:background="@drawable/bg_ai_option_card"
+        android:layout_marginTop="@dimen/spacing_14"
+        android:clickable="true"
+        android:focusable="true">
+
+        <FrameLayout
+            android:layout_width="@dimen/size_icon_option"
+            android:layout_height="@dimen/size_icon_option"
+            android:background="@drawable/bg_ai_icon">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/size_icon_option"
+                android:layout_height="@dimen/size_icon_option"
+                android:layout_gravity="center"
+                android:src="@drawable/gallery"
+                android:contentDescription="@string/cd_gallery_icon" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginStart="@dimen/spacing_16">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_choose_gallery"
+                android:textColor="@color/smartmove_text_primary"
+                android:textSize="@dimen/text_size_subtitle_sm"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/dialog_pick_multiple"
+                android:textColor="@color/smartmove_text_secondary"
+                android:textSize="@dimen/text_size_body_sm"
+                android:layout_marginTop="@dimen/spacing_3" />
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/label_chevron"
+            android:textColor="@color/smartmove_divider"
+            android:textSize="@dimen/text_size_chevron" />
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_input"
+        android:gravity="center"
+        android:text="@string/btn_cancel"
+        android:textColor="@color/button_primary_color"
+        android:textSize="@dimen/text_size_subtitle_sm"
+        android:textStyle="bold"
+        android:background="@drawable/bg_ai_cancel"
+        android:layout_marginTop="@dimen/spacing_20" />
+
+</LinearLayout>

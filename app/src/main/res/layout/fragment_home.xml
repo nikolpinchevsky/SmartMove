@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_screen">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/spacing_20"
+            android:paddingTop="@dimen/spacing_22"
+            android:paddingEnd="@dimen/spacing_20"
+            android:paddingBottom="@dimen/spacing_bottom_tabs">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvWelcome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/home_welcome"
+                android:textColor="@color/smartmove_text_primary"
+                android:textSize="@dimen/text_size_title_lg"
+                android:textStyle="bold" />
+
+            <!-- Active Project Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_18"
+                android:elevation="@dimen/elevation_card_lg"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/corner_2xl">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingStart="@dimen/spacing_18"
+                    android:paddingTop="@dimen/spacing_16"
+                    android:paddingEnd="@dimen/spacing_18"
+                    android:paddingBottom="@dimen/spacing_16">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProjectLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_active_project_badge"
+                        android:paddingStart="@dimen/spacing_10"
+                        android:paddingTop="@dimen/spacing_4"
+                        android:paddingEnd="@dimen/spacing_10"
+                        android:paddingBottom="@dimen/spacing_4"
+                        android:text="@string/home_active_project"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_size_xs"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_12"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvProjectName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/home_project_placeholder"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_title"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvProgressPercent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_progress_default"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_body_lg"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <ProgressBar
+                        android:id="@+id/progressMoving"
+                        style="?android:attr/progressBarStyleHorizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_progress_bar"
+                        android:layout_marginTop="@dimen/spacing_8"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressDrawable="@drawable/bg_progress_bar" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvProjectDescription"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_6"
+                        android:text="@string/home_project_description"
+                        android:textColor="@color/smartmove_text_secondary"
+                        android:textSize="@dimen/text_size_body" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Dashboard Stats Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_14"
+                android:elevation="@dimen/elevation_card_md"
+                app:cardBackgroundColor="@android:color/white"
+                app:cardCornerRadius="@dimen/corner_xl">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="@dimen/spacing_16"
+                    android:paddingBottom="@dimen/spacing_16">
+
+                    <LinearLayout
+                        android:id="@+id/cardBoxes"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/boxes_blue"
+                            android:contentDescription="Boxes icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBoxesCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_stat_count_default"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_title_md"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_2"
+                            android:text="@string/home_stat_boxes"
+                            android:textColor="@color/smartmove_text_secondary"
+                            android:textSize="@dimen/text_size_xs" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/smartmove_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/cardOpened"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/open_box_green"
+                            android:contentDescription="Opened icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvOpenedCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_stat_count_default"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_title_md"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_2"
+                            android:text="@string/home_stat_opened"
+                            android:textColor="@color/smartmove_text_secondary"
+                            android:textSize="@dimen/text_size_xs" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/smartmove_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/cardUnpacked"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/to_open_box"
+                            android:contentDescription="To open icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUnpackedCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_stat_count_default"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_title_md"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_2"
+                            android:text="@string/home_stat_to_open"
+                            android:textColor="@color/smartmove_text_secondary"
+                            android:textSize="@dimen/text_size_xs" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@color/smartmove_divider" />
+
+                    <LinearLayout
+                        android:id="@+id/cardUrgent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="58dp"
+                            android:layout_height="58dp"
+                            android:layout_marginBottom="8dp"
+                            android:src="@drawable/urgent_box"
+                            android:contentDescription="Urgent icon" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvUrgentCount"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/home_stat_count_default"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_title_md"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_2"
+                            android:text="@string/home_stat_urgent"
+                            android:textColor="@color/smartmove_text_secondary"
+                            android:textSize="@dimen/text_size_xs" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Recent Boxes Section Header -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_24"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/home_recent_boxes"
+                    android:textColor="@color/smartmove_text_primary"
+                    android:textSize="@dimen/text_size_title_sm"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btnSeeAllRecent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingStart="@dimen/spacing_8"
+                    android:paddingTop="@dimen/spacing_4"
+                    android:paddingBottom="@dimen/spacing_4"
+                    android:text="@string/home_see_all"
+                    android:textColor="@color/progress_fill"
+                    android:textSize="@dimen/text_size_body_sm"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressRecentBoxes"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:visibility="gone" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvRecentEmpty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:text="@string/home_no_boxes"
+                android:textColor="@color/smartmove_text_secondary"
+                android:textSize="@dimen/text_size_body"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerRecentBoxes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/spacing_12"
+                android:nestedScrollingEnabled="false" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</FrameLayout>

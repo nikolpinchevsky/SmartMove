@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_login_screen"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/spacing_20"
+        android:paddingTop="@dimen/spacing_24"
+        android:paddingEnd="@dimen/spacing_20"
+        android:paddingBottom="@dimen/spacing_bottom_tabs">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvScanTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/scan_title"
+                    android:textColor="@color/smartmove_text_primary"
+                    android:textSize="@dimen/text_size_title_lg"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvScanSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_6"
+                    android:text="@string/scan_subtitle"
+                    android:textColor="@color/smartmove_text_secondary"
+                    android:textSize="@dimen/text_size_body" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="88dp"
+                android:layout_height="70dp"
+                android:contentDescription="@string/cd_qr_preview"
+                android:scaleType="fitCenter"
+                android:src="@drawable/box_scan_down" />
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardScanner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_20"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/corner_3xl"
+            app:cardElevation="@dimen/elevation_card_sm">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_20">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/bg_camera_white_circle">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="35dp"
+                            android:layout_height="35dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@string/cd_qr_preview"
+                            android:src="@drawable/camera" />
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/spacing_12"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/scan_status_ready"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_body_lg"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/spacing_2"
+                            android:text="@string/scan_camera_preview"
+                            android:textColor="@color/smartmove_text_secondary"
+                            android:textSize="@dimen/text_size_body_sm" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="180dp"
+                    android:layout_marginTop="@dimen/spacing_18">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:contentDescription="@string/cd_qr_preview"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/scan" />
+                </FrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:background="@drawable/bg_empty_state_card"
+                    android:gravity="center"
+                    android:paddingTop="@dimen/spacing_8"
+                    android:paddingBottom="@dimen/spacing_8"
+                    android:text="@string/scan_instructions"
+                    android:textColor="@color/smartmove_text_secondary"
+                    android:textSize="@dimen/text_size_body_sm" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnStartScan"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/height_button_primary"
+                    android:layout_marginTop="@dimen/spacing_16"
+                    android:background="@drawable/bg_scan_cta_button"
+                    android:text="@string/btn_start_scanning"
+                    android:textAllCaps="false"
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/text_size_subtitle"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardScannedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/spacing_18"
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="@dimen/corner_2xl"
+            app:cardElevation="@dimen/elevation_card_sm">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/spacing_20">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/boxes_blue"
+                    android:drawablePadding="@dimen/spacing_8"
+                    android:gravity="center_vertical"
+                    android:text="@string/scan_box_details_label"
+                    android:textColor="@color/smartmove_text_primary"
+                    android:textSize="@dimen/text_size_body_lg"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvEmptyState"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_18"
+                    android:drawableTop="@drawable/box_scan"
+                    android:drawablePadding="@dimen/spacing_12"
+                    android:gravity="center"
+                    android:paddingStart="@dimen/spacing_20"
+                    android:paddingTop="@dimen/spacing_16"
+                    android:paddingEnd="@dimen/spacing_20"
+                    android:paddingBottom="@dimen/spacing_16"
+                    android:text="@string/scan_empty_state"
+                    android:textColor="@color/smartmove_text_primary"
+                    android:textSize="@dimen/text_size_body_lg"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:id="@+id/layoutBoxDetails"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/spacing_12"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="@dimen/spacing_12"
+                        android:contentDescription="@string/cd_qr_preview"
+                        android:src="@drawable/box_scan_down" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBoxName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/placeholder_box_name"
+                        android:textColor="@color/smartmove_text_primary"
+                        android:textSize="@dimen/text_size_title_sm"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBoxQr"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_4"
+                        android:text="@string/placeholder_qr"
+                        android:textColor="@color/smartmove_text_secondary"
+                        android:textSize="@dimen/text_size_body_sm" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_10"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBoxPriority"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_chip"
+                            android:background="@drawable/bg_priority_yellow"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/spacing_12"
+                            android:paddingEnd="@dimen/spacing_12"
+                            android:text="@string/placeholder_priority"
+                            android:textColor="@android:color/white"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBoxStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/height_chip"
+                            android:layout_marginStart="@dimen/spacing_8"
+                            android:background="@drawable/bg_chip_soft"
+                            android:gravity="center"
+                            android:paddingStart="@dimen/spacing_12"
+                            android:paddingEnd="@dimen/spacing_12"
+                            android:text="@string/placeholder_status"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_divider"
+                        android:layout_marginTop="@dimen/spacing_14"
+                        android:background="@color/smartmove_divider" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBoxRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_14"
+                        android:text="@string/placeholder_room"
+                        android:textColor="@color/smartmove_text_primary"
+                        android:textSize="@dimen/text_size_body" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_6"
+                        android:orientation="horizontal">
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBoxFragile"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/placeholder_fragile"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_body" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tvBoxValuable"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/placeholder_valuable"
+                            android:textColor="@color/smartmove_text_primary"
+                            android:textSize="@dimen/text_size_body" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_divider"
+                        android:layout_marginTop="@dimen/spacing_14"
+                        android:background="@color/smartmove_divider" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBoxItemsLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_14"
+                        android:text="@string/box_items_label"
+                        android:textColor="@color/smartmove_text_primary"
+                        android:textSize="@dimen/text_size_body"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/tvBoxItems"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/spacing_6"
+                        android:text="@string/placeholder_scan_items"
+                        android:textColor="@color/smartmove_text_secondary"
+                        android:textSize="@dimen/text_size_body_sm" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnOpenFullDetails"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/height_button_primary"
+                        android:layout_marginTop="@dimen/spacing_20"
+                        android:background="@drawable/bg_scan_cta_button"
+                        android:text="@string/btn_open_full_details"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/text_size_body_lg"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>

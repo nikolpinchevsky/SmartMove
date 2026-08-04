@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">#FFFFFFFF</color>
+
+    <!-- SmartMove brand -->
+    <color name="smartmove_bg_top">#F8FAFC</color>
+    <color name="smartmove_bg_bottom">#F8FAFC</color>
+    <color name="smartmove_text_primary">#0F172A</color>
+    <color name="smartmove_text_secondary">#475569</color>
+    <color name="smartmove_divider">#E2E8F0</color>
+
+    <!-- Surfaces -->
+    <color name="border_strong">#A8DBEF</color>
+
+    <!-- Priority — accent bars (left card stripe) -->
+    <color name="priority_accent_red">#EF4444</color>
+    <color name="priority_accent_yellow">#F59E0B</color>
+    <color name="priority_accent_green">#22C55E</color>
+
+    <!-- Priority — tinted surfaces for display chips -->
+    <color name="priority_red_surface">#EDC3C3</color>
+    <color name="priority_red_border">#FECACA</color>
+    <color name="priority_red_text">#DC2626</color>
+    <color name="priority_yellow_surface">#FFFBEB</color>
+    <color name="priority_yellow_border">#FDE68A</color>
+    <color name="priority_yellow_text">#78350F</color>
+    <color name="priority_green_surface">#F0FDF4</color>
+    <color name="priority_green_border">#BBF7D0</color>
+    <color name="priority_green_text">#16A34A</color>
+
+    <!-- Progress bar -->
+    <color name="progress_track">#E2E8F0</color>
+    <color name="progress_fill">#2563EB</color>
+
+    <!-- AI feature -->
+    <color name="ai_gradient_start">#7C3AED</color>
+    <color name="ai_gradient_end">#6366F1</color>
+    <color name="ai_icon_bg">#B3E5FC</color>
+
+    <!-- Avatar / profile -->
+    <color name="avatar_gradient_start">#BFDBFE</color>
+    <color name="avatar_gradient_end">#3B82F6</color>
+
+    <!-- Chips / cards -->
+    <color name="chip_soft_bg">#E0F7FA</color>
+    <color name="card_bg_blue">#EFF6FF</color>
+    <color name="card_stroke_blue">#BFDBFE</color>
+    <color name="card_bg_light">#F8FAFC</color>
+    <color name="card_stroke_light">#E2E8F0</color>
+    <color name="card_border_light">#BFCBEB</color>
+
+    <!-- FAB -->
+    <color name="fab_pastel_bg">#DBEAFE</color>
+    <color name="fab_pastel_icon">#1D4ED8</color>
+
+    <!-- Buttons -->
+    <color name="button_primary_color">#0F172A</color>
+    <color name="cancel_button_bg">#F1F5F9</color>
+    <color name="cancel_button_border">#E2E8F0</color>
+
+    <!-- QR dialog -->
+    <color name="qr_title_color">#0F172A</color>
+    <color name="qr_subtitle_color">#475569</color>
+
+    <!-- Scan screen -->
+    <color name="scan_card_bg">#838385</color>
+    <color name="scan_text_light">#0A1114</color>
+    <color name="scan_frame_outer">#1E293B</color>
+    <color name="scan_frame_inner">#0F172A</color>
+    <color name="scan_frame_border">#60A5FA</color>
+    <color name="scan_accent">#818CF8</color>
+    <color name="scan_accent_dark">#6366F1</color>
+    <color name="scan_text_muted">#94A3B8</color>
+
+    <!-- Profile -->
+    <color name="other_projects_text">#475569</color>
+</resources>

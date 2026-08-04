@@ -1,0 +1,48 @@
+package com.example.smartmove.data
+
+import android.content.Context
+import androidx.core.content.edit
+
+class SessionManager(context: Context) {
+
+    private val prefs = context.getSharedPreferences("smartmove_prefs", Context.MODE_PRIVATE)
+
+    fun saveToken(token: String) {
+        prefs.edit { putString("access_token", token) }
+    }
+
+    fun getToken(): String? {
+        return prefs.getString("access_token", null)
+    }
+
+    fun saveActiveProjectId(projectId: String) {
+        prefs.edit { putString("active_project_id", projectId) }
+    }
+
+    fun getActiveProjectId(): String? {
+        return prefs.getString("active_project_id", null)
+    }
+
+    fun saveActiveProjectName(projectName: String) {
+        prefs.edit { putString("active_project_name", projectName) }
+    }
+
+    fun getActiveProjectName(): String? {
+        return prefs.getString("active_project_name", null)
+    }
+
+    fun clearActiveProject() {
+        prefs.edit {
+            remove("active_project_id")
+            remove("active_project_name")
+        }
+    }
+
+    fun clearSession() {
+        prefs.edit { clear() }
+    }
+
+    fun isLoggedIn(): Boolean {
+        return !getToken().isNullOrEmpty()
+    }
+}
